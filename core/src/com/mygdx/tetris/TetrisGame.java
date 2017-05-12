@@ -13,6 +13,11 @@ public class TetrisGame extends Game {
 		this.setScreen(new MainMenu(this));
 	}
 
+	public void setBoardScreen() {
+		BoardModel model = new BoardModel();
+		this.setScreen(new BoardView(this, model));
+	}
+
 	/*
 	@Override
 	public void render () {
