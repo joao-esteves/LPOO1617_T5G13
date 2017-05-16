@@ -10,12 +10,12 @@ public class TetrisGame extends Game {
 
 	@Override
 	public void create () {
-		this.setScreen(new MainMenu(this));
+		this.setScreen(MainMenu.getInstance(this));
 	}
 
 	public void setBoardScreen() {
 		BoardModel model = new BoardModel();
-		this.setScreen(new BoardView(this, model));
+		this.setScreen(BoardView.getInstance(this, model));
 	}
 
 	/*
