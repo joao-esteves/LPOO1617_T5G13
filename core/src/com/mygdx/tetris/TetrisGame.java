@@ -14,7 +14,7 @@ public class TetrisGame extends Game {
 	}
 
 	public void setBoardScreen() {
-		BoardModel model = new BoardModel();
+		BoardModel model = BoardModel.getInstance();
 		this.setScreen(BoardView.getInstance(this, model));
 	}
 

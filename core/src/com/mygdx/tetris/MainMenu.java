@@ -55,9 +55,14 @@ class MainMenu extends ScreenAdapter {
 
     public static MainMenu getInstance(TetrisGame game) {
         if (instance == null) {
-            return new MainMenu(game);
+            instance = new MainMenu(game);
         }
         return instance;
+    }
+
+    @Override
+    public void show() {
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override

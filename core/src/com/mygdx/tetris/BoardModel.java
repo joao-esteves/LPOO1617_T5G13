@@ -5,4 +5,17 @@ package com.mygdx.tetris;
  */
 
 class BoardModel {
+
+    private static BoardModel instance = null;
+
+    private BoardModel() {
+
+    }
+
+    public static BoardModel getInstance() {
+        if (instance == null) {
+            instance = new BoardModel();
+        }
+        return instance;
+    }
 }

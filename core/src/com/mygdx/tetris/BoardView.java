@@ -57,9 +57,14 @@ class BoardView extends ScreenAdapter {
 
     public static BoardView getInstance(TetrisGame game, BoardModel model) {
         if (instance == null) {
-            return new BoardView(game, model);
+            instance = new BoardView(game, model);
         }
         return instance;
+    }
+
+    @Override
+    public void show() {
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
@@ -68,5 +73,14 @@ class BoardView extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         stage.draw();
+    }
+
+    @Override
+    public void dispose() {
+        stage.dispose();
+        buttonSkin.dispose();
+        font.dispose();
+        buttonSkin.dispose();
+        buttonAtlas.dispose();
     }
 }
