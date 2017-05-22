@@ -1,12 +1,17 @@
-package com.mygdx.tetris;
+package com.mygdx.tetris.logic;
+
+import java.awt.Point;
+import java.util.ArrayList;
 
 /**
  * Created by joaof on 12/05/2017.
  */
 
-class BoardModel {
+public class BoardModel {
 
     private static BoardModel instance = null;
+    private static final Point spawnPos = new Point(3, 10);
+    private ArrayList<Piece> pieces;
 
     private BoardModel() {
 
