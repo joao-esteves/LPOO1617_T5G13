@@ -7,7 +7,7 @@ import com.mygdx.tetris.logic.GameModel;
 
 public class TetrisGame extends Game {
 
-	private int columns, lines;
+	private int columns = 10, lines = 10;
 
 	@Override
 	public void create () {
