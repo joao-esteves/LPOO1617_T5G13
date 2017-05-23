@@ -3,6 +3,7 @@ package com.mygdx.tetris.gui;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -53,7 +54,8 @@ public class GameView extends ScreenAdapter {
     }
 
     private void setupGameViewport() {
-
+        OrthographicCamera camera = new OrthographicCamera();
+    //    camera.setToOrtho(false, Gdx.graphics.);
     }
 
     private void setupMenuButton() {
