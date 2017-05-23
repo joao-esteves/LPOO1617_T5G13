@@ -54,7 +54,6 @@ public class MainMenu extends ScreenAdapter {
         playButtonStyle.font = font;
 
         playButton = new TextButton("Play", playButtonStyle);
-      //  playButton.setPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         playButton.getLabel().setFontScale(2f);
         playButton.addListener(new ChangeListener() {
             @Override

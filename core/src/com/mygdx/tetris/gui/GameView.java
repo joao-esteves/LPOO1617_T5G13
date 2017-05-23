@@ -71,7 +71,7 @@ public class GameView extends ScreenAdapter {
             }
         });
 
-        table.right();
+        table.top();
         table.add(menuButton).width(150).height(100);
     }
 
