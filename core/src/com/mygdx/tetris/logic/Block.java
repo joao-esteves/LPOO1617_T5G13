@@ -16,21 +16,17 @@ public class Block {
         this.map = map;
     }
 
-    public Block(Point coords, GameMap map) {
+    public Block(GridPoint2 coords, GameMap map) {
         setCoords(coords);
         this.map = map;
     }
 
-    public void setCoords(Point coords) {
-        this.coords = (GridPoint2) coords.clone();
+    public void setCoords(GridPoint2 coords) {
+        this.coords = coords;
     }
 
     public GridPoint2 getCoords() {
-        return coords;
-    }
-
-    public void moveUp() {
-        coords.set(coords.x, coords.y + 1);
+        return new GridPoint2(coords);
     }
 
     public void moveDown() {
@@ -43,5 +39,9 @@ public class Block {
 
     public void moveRight() {
         coords.set(coords.x + 1, coords.y);
+    }
+
+    public Object clone() {
+        return new Block(coords, map);
     }
 }

@@ -1,9 +1,13 @@
-package com.mygdx.tetris.gui;
+package com.mygdx.tetris;
 
 import com.badlogic.gdx.Game;
+import com.mygdx.tetris.gui.GameView;
+import com.mygdx.tetris.gui.MainMenu;
 import com.mygdx.tetris.logic.GameModel;
 
 public class TetrisGame extends Game {
+
+	private int columns, lines;
 
 	@Override
 	public void create () {
@@ -11,7 +15,7 @@ public class TetrisGame extends Game {
 	}
 
 	public void setBoardScreen() {
-		GameModel model = GameModel.getInstance();
+		GameModel model = GameModel.getInstance(columns, lines);
 		this.setScreen(GameView.getInstance(this, model));
 	}
 

@@ -22,37 +22,17 @@ public class Test_Piece {
     @Test
     public void movePiece() {
         GameMap map = new GameMap(10,10);
-        Piece piece = PieceFactory.getPiece(map);
-        ArrayList<GridPoint2> oldCoords = piece.getCoords();
+        GridPoint2 spawnPos = new GridPoint2(3, 9);
+        PieceFactory pieceFactory = new PieceFactory(spawnPos);
+        Piece piece = pieceFactory.makePiece(map);
+        final ArrayList<GridPoint2> oldCoords = piece.getCoords();
         ArrayList<GridPoint2> newCoords;
-
-        // test move up
-        piece.move('W');
-        newCoords = piece.getCoords();
-        for (int i = 0; i < oldCoords.size(); i++) {
-            GridPoint2 expectedPoint = oldCoords.get(i);
-            expectedPoint.add(0,1);
-            GridPoint2 newPoint = newCoords.get(i);
-            assertEquals(expectedPoint, newPoint);
-        }
-        piece.move('S');
-
-        // test move down
-        piece.move('S');
-        newCoords = piece.getCoords();
-        for (int i = 0; i < oldCoords.size(); i++) {
-            GridPoint2 expectedPoint = oldCoords.get(i);
-            expectedPoint.add(0,-1);
-            GridPoint2 newPoint = newCoords.get(i);
-            assertEquals(expectedPoint, newPoint);
-        }
-        piece.move('W');
 
         // test move left
         piece.move('A');
         newCoords = piece.getCoords();
         for (int i = 0; i < oldCoords.size(); i++) {
-            GridPoint2 expectedPoint = oldCoords.get(i);
+            GridPoint2 expectedPoint = new GridPoint2(oldCoords.get(i));
             expectedPoint.add(-1,0);
             GridPoint2 newPoint = newCoords.get(i);
             assertEquals(expectedPoint, newPoint);
@@ -63,11 +43,21 @@ public class Test_Piece {
         piece.move('D');
         newCoords = piece.getCoords();
         for (int i = 0; i < oldCoords.size(); i++) {
-            GridPoint2 expectedPoint = oldCoords.get(i);
+            GridPoint2 expectedPoint = new GridPoint2(oldCoords.get(i));
             expectedPoint.add(1,0);
             GridPoint2 newPoint = newCoords.get(i);
             assertEquals(expectedPoint, newPoint);
         }
         piece.move('A');
+
+        // test move down
+        piece.move('S');
+        newCoords = piece.getCoords();
+        for (int i = 0; i < oldCoords.size(); i++) {
+            GridPoint2 expectedPoint = new GridPoint2(oldCoords.get(i));
+            expectedPoint.add(0,-1);
+            GridPoint2 newPoint = newCoords.get(i);
+            assertEquals(expectedPoint, newPoint);
+        }
     }
 }

@@ -27,9 +27,6 @@ public abstract class Piece {
 
     public void move(char direction) {
         switch(direction) {
-            case 'W':
-                moveUp(direction);
-                break;
             case 'S':
                 moveDown(direction);
                 break;
@@ -39,12 +36,6 @@ public abstract class Piece {
             case 'D':
                 moveRight(direction);
                 break;
-        }
-    }
-
-    private void moveUp(char direction) {
-        for (Block block : blocks) {
-            block.moveUp();
         }
     }
 
@@ -64,5 +55,9 @@ public abstract class Piece {
         for (Block block : blocks) {
             block.moveRight();
         }
+    }
+
+    public List<Block> getBlocks() {
+        return blocks;
     }
 }

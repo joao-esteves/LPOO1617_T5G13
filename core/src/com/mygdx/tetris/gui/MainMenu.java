@@ -11,12 +11,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.mygdx.tetris.TetrisGame;
 
 /**
  * Created by joaof on 05/05/2017.
  */
 
-class MainMenu extends ScreenAdapter {
+public class MainMenu extends ScreenAdapter {
 
     private TetrisGame game;
 

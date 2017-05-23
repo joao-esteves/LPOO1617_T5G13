@@ -10,13 +10,14 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.mygdx.tetris.TetrisGame;
 import com.mygdx.tetris.logic.GameModel;
 
 /**
  * Created by joaof on 12/05/2017.
  */
 
-class GameView extends ScreenAdapter {
+public class GameView extends ScreenAdapter {
 
     private static GameView instance = null;
 
