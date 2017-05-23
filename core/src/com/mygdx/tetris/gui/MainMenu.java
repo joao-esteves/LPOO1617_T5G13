@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -22,6 +23,7 @@ public class MainMenu extends ScreenAdapter {
     private TetrisGame game;
 
     private Stage stage;
+    private Table table;
     private TextButton playButton;
     private BitmapFont font;
     private Skin buttonSkin;
@@ -32,26 +34,36 @@ public class MainMenu extends ScreenAdapter {
     private MainMenu(TetrisGame tetrisGame) {
         game = tetrisGame;
         stage = new Stage();
+        table = new Table();
+        table.setFillParent(true);
         Gdx.input.setInputProcessor(stage);
         font = new BitmapFont();
         buttonSkin = new Skin();
         buttonAtlas = new TextureAtlas(Gdx.files.internal("buttons/playButton.pack"));
         buttonSkin.addRegions(buttonAtlas);
 
+        setupPlayButton();
+
+        stage.addActor(table);
+    }
+
+    private void setupPlayButton() {
         TextButtonStyle playButtonStyle = new TextButtonStyle();
         playButtonStyle.up = buttonSkin.getDrawable("greyButton");
         playButtonStyle.down = buttonSkin.getDrawable("greyDarkButton");
         playButtonStyle.font = font;
 
         playButton = new TextButton("Play", playButtonStyle);
-        playButton.setPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+      //  playButton.setPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+        playButton.getLabel().setFontScale(2f);
         playButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 game.setBoardScreen();
             }
         });
-        stage.addActor(playButton);
+
+        table.add(playButton).width(150).height(100);
     }
 
     public static MainMenu getInstance(TetrisGame game) {

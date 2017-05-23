@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.mygdx.tetris.TetrisGame;
@@ -25,6 +26,7 @@ public class GameView extends ScreenAdapter {
     private GameModel model;
 
     private Stage stage;
+    private Table table;
     private TextButton menuButton;
     private BitmapFont font;
     private Skin buttonSkin;
@@ -35,26 +37,42 @@ public class GameView extends ScreenAdapter {
         this.model = model;
 
         stage = new Stage();
+        table = new Table();
+        table.setFillParent(true);
+      //  table.right();
         Gdx.input.setInputProcessor(stage);
         font = new BitmapFont();
         buttonSkin = new Skin();
         buttonAtlas = new TextureAtlas(Gdx.files.internal("buttons/playButton.pack"));
         buttonSkin.addRegions(buttonAtlas);
 
-        TextButton.TextButtonStyle playButtonStyle = new TextButton.TextButtonStyle();
-        playButtonStyle.up = buttonSkin.getDrawable("greyButton");
-        playButtonStyle.down = buttonSkin.getDrawable("greyDarkButton");
-        playButtonStyle.font = font;
+        setupGameViewport();
+        setupMenuButton();
 
-        menuButton = new TextButton("Menu", playButtonStyle);
-        menuButton.setPosition(100,100);
+        stage.addActor(table);
+    }
+
+    private void setupGameViewport() {
+
+    }
+
+    private void setupMenuButton() {
+        TextButton.TextButtonStyle menuButtonStyle = new TextButton.TextButtonStyle();
+        menuButtonStyle.up = buttonSkin.getDrawable("greyButton");
+        menuButtonStyle.down = buttonSkin.getDrawable("greyDarkButton");
+        menuButtonStyle.font = font;
+
+        menuButton = new TextButton("Menu", menuButtonStyle);
+        menuButton.getLabel().setFontScale(2f);
         menuButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 game.setScreen(MainMenu.getInstance(game));
             }
         });
-        stage.addActor(menuButton);
+
+        table.right();
+        table.add(menuButton).width(150).height(100);
     }
 
     public static GameView getInstance(TetrisGame game, GameModel model) {
