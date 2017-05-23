@@ -1,4 +1,4 @@
-package com.mygdx.tetris;
+package com.mygdx.tetris.gui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -10,18 +10,18 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.mygdx.tetris.logic.BoardModel;
+import com.mygdx.tetris.logic.GameModel;
 
 /**
  * Created by joaof on 12/05/2017.
  */
 
-class BoardView extends ScreenAdapter {
+class GameView extends ScreenAdapter {
 
-    private static BoardView instance = null;
+    private static GameView instance = null;
 
     private TetrisGame game;
-    private BoardModel model;
+    private GameModel model;
 
     private Stage stage;
     private TextButton menuButton;
@@ -29,7 +29,7 @@ class BoardView extends ScreenAdapter {
     private Skin buttonSkin;
     private TextureAtlas buttonAtlas;
 
-    private BoardView(TetrisGame tetrisGame, BoardModel model) {
+    private GameView(TetrisGame tetrisGame, GameModel model) {
         this.game = tetrisGame;
         this.model = model;
 
@@ -56,9 +56,9 @@ class BoardView extends ScreenAdapter {
         stage.addActor(menuButton);
     }
 
-    public static BoardView getInstance(TetrisGame game, BoardModel model) {
+    public static GameView getInstance(TetrisGame game, GameModel model) {
         if (instance == null) {
-            instance = new BoardView(game, model);
+            instance = new GameView(game, model);
         }
         return instance;
     }

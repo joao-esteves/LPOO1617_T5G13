@@ -1,7 +1,7 @@
-package com.mygdx.tetris;
+package com.mygdx.tetris.gui;
 
 import com.badlogic.gdx.Game;
-import com.mygdx.tetris.logic.BoardModel;
+import com.mygdx.tetris.logic.GameModel;
 
 public class TetrisGame extends Game {
 
@@ -11,8 +11,8 @@ public class TetrisGame extends Game {
 	}
 
 	public void setBoardScreen() {
-		BoardModel model = BoardModel.getInstance();
-		this.setScreen(BoardView.getInstance(this, model));
+		GameModel model = GameModel.getInstance();
+		this.setScreen(GameView.getInstance(this, model));
 	}
 
 	/*

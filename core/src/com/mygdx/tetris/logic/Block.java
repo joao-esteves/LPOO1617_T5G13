@@ -1,42 +1,47 @@
 package com.mygdx.tetris.logic;
 
+import com.badlogic.gdx.math.GridPoint2;
+
 import java.awt.Point;
 
 /**
  * Created by up201505145 on 22/05/2017.
  */
 public class Block {
-    private Point coords;
+    private GridPoint2 coords;
+    private GameMap map;
 
-    public Block(int x, int y) {
-        coords = new Point(x, y);
+    public Block(int x, int y, GameMap map) {
+        coords = new GridPoint2(x, y);
+        this.map = map;
     }
 
-    public Block(Point coords) {
+    public Block(Point coords, GameMap map) {
         setCoords(coords);
+        this.map = map;
     }
 
     public void setCoords(Point coords) {
-        this.coords = (Point) coords.clone();
+        this.coords = (GridPoint2) coords.clone();
     }
 
-    public Point getCoords() {
+    public GridPoint2 getCoords() {
         return coords;
     }
 
     public void moveUp() {
-        coords.move(coords.x, coords.y + 1);
+        coords.set(coords.x, coords.y + 1);
     }
 
     public void moveDown() {
-        coords.move(coords.x, coords.y - 1);
+        coords.set(coords.x, coords.y - 1);
     }
 
     public void moveLeft() {
-        coords.move(coords.x - 1, coords.y);
+        coords.set(coords.x - 1, coords.y);
     }
 
     public void moveRight() {
-        coords.move(coords.x + 1, coords.y);
+        coords.set(coords.x + 1, coords.y);
     }
 }

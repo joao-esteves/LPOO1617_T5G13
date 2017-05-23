@@ -1,20 +1,28 @@
 package com.mygdx.tetris.logic;
 
+import com.badlogic.gdx.math.GridPoint2;
+
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by up201505145 on 22/05/2017.
  */
 public abstract class Piece {
-    private ArrayList<Block> blocks;
+    protected List<Block> blocks;
+    protected GameMap map;
 
-    public ArrayList<Point> getCoords() {
-        ArrayList<Point> coords = new ArrayList<Point>();
+    public ArrayList<GridPoint2> getCoords() {
+        ArrayList<GridPoint2> coords = new ArrayList<GridPoint2>();
         for (Block block : blocks) {
             coords.add(block.getCoords());
         }
         return coords;
+    }
+
+    public void setMap(GameMap map) {
+        this.map = map;
     }
 
     public void move(char direction) {

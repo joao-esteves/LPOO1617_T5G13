@@ -1,6 +1,6 @@
 package com.mygdx.tetris.test;
 
-import com.mygdx.tetris.logic.BoardModel;
+import com.mygdx.tetris.logic.GameModel;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -13,13 +13,13 @@ import static org.junit.Assert.assertNotEquals;
 public class Test_BoardModel {
     @Test
     public void creation() {
-        BoardModel game = BoardModel.getInstance();
+        GameModel game = GameModel.getInstance();
         assertNotEquals(game, null);
     }
 
     @Test
     public void spawnPiece() {
-        BoardModel game = BoardModel.getInstance();
+        GameModel game = GameModel.getInstance();
 
     }
 }

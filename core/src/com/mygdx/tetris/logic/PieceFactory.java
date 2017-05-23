@@ -9,10 +9,12 @@ import java.util.Random;
  * Created by up201505145 on 22/05/2017.
  */
 public class PieceFactory {
-    private static List<Piece> pieces = Arrays.asList(new StraightPiece(), new SquarePiece());
+    private static final List<Piece> pieces = Arrays.asList(new StraightPiece(), new SquarePiece());
+    private static final Random random = new Random();
 
-    public static Piece getPiece() {
-        Random random = new Random();
-        return pieces.get(random.nextInt(pieces.size()));
+    public static Piece getPiece(GameMap map) {
+        Piece piece = pieces.get(random.nextInt(pieces.size()));
+        piece.setMap(map);
+        return piece;
     }
 }

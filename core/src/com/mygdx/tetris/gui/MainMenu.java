@@ -1,4 +1,4 @@
-package com.mygdx.tetris;
+package com.mygdx.tetris.gui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
