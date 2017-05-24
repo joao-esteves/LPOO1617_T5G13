@@ -48,7 +48,7 @@ public abstract class Piece {
 
     private void moveLeft() {
         for (Block block : blocks) {
-            if (block.getCoords().x == 0) {
+            if (block.getCoords().x == 0 || map.isOccupied(block.getCoords().x - 1, block.getCoords().y)){
                 return;
             }
         }
@@ -59,7 +59,7 @@ public abstract class Piece {
 
     private void moveRight() {
         for (Block block : blocks) {
-            if (block.getCoords().x == map.getCols() - 1) {
+            if (block.getCoords().x == map.getCols() - 1 || map.isOccupied(block.getCoords().x + 1, block.getCoords().y)) {
                 return;
             }
         }

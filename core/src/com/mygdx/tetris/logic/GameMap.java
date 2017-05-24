@@ -16,25 +16,26 @@ public class GameMap {
         map = new char[columns][lines];
     }
 
+    public boolean isOccupied(Piece piece) {
+        for (Block block : piece.blocks) {
+            if (isOccupied(block.getCoords())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void drawPiece(Piece piece) {
         for (int i = 0; i < piece.blocks.size(); i++) {
             Block block = piece.blocks.get(i);
-            if (!isOcuppied(block.getCoords())) {
-                drawCell(block.getCoords(), piece.getSymbol());
-            } else {
-                for (int j = 0; j < i; j++) {
-                    Block currentBlock = piece.blocks.get(j);
-                    clearCell(currentBlock.getCoords());
-                }
-                break;
-            }
+            drawCell(block.getCoords(), piece.getSymbol());
         }
     }
 
     public void clearPiece(Piece piece) throws CorruptedCell {
         for (int i = 0; i < piece.blocks.size(); i++) {
             Block block = piece.blocks.get(i);
-            if (isOcuppied(block.getCoords())) {
+            if (isOccupied(block.getCoords())) {
                 clearCell(block.getCoords());
             } else {
                 throw new CorruptedCell(block.getCoords());
@@ -45,7 +46,7 @@ public class GameMap {
     public void drawBlocks(List<Block> blocks) throws CorruptedCell {
         for (int i = 0; i < blocks.size(); i++) {
             Block block = blocks.get(i);
-            if (!isOcuppied(block.getCoords())) {
+            if (!isOccupied(block.getCoords())) {
                 drawCell(block.getCoords(), block.getSymbol());
             } else {
                 throw new CorruptedCell(block.getCoords());
@@ -53,7 +54,11 @@ public class GameMap {
         }
     }
 
-    private boolean isOcuppied(GridPoint2 coords) {
+    public boolean isOccupied(int x, int y) {
+        return (map[x][y] != '\0');
+    }
+
+    public boolean isOccupied(GridPoint2 coords) {
         return (map[coords.x][coords.y] != '\0');
     }
 
@@ -68,7 +73,7 @@ public class GameMap {
     public boolean pieceCollidedDownwards(Piece piece) {
         for (Block block : piece.blocks) {
             if (block.getCoords().y == 0
-                || isOcuppied(block.getCoords().add(0,-1))) {
+                || isOccupied(block.getCoords().add(0,-1))) {
                 return true;
             }
         }

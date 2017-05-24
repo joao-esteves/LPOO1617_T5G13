@@ -15,6 +15,7 @@ public class GameModel {
     private GameMap map;
     private ArrayList<Block> blocks;
     private Piece currentPiece;
+    private GameStatus status;
 
     public Piece getCurrentPiece() {
         return currentPiece;
@@ -35,6 +36,7 @@ public class GameModel {
         blocks = new ArrayList<Block>();
         currentPiece = pieceFactory.makePiece(map);
         map.drawPiece(currentPiece);
+        status = GameStatus.ONGOING;
     }
 
 //    public static GameModel getInstance(int columns, int lines) {
@@ -54,15 +56,25 @@ public class GameModel {
 //    }
 
     public void nextCycle(Direction direction) throws CorruptedCell {
+        if (status != status.ONGOING) {
+            return;
+        }
         map.clearPiece(currentPiece);
         if (map.pieceCollidedDownwards(currentPiece)) {
             blocks.addAll(currentPiece.getBlocks());
             map.drawBlocks(currentPiece.getBlocks());
             currentPiece = pieceFactory.makePiece(map);
+            if (map.isOccupied(currentPiece)) {
+                loseGame();
+            }
         } else {
             currentPiece.move(direction);
         }
         map.drawPiece(currentPiece);
+    }
+
+    private void loseGame() {
+        status = status.DEFEAT;
     }
 
     private boolean isAtEdges(Piece piece) {
