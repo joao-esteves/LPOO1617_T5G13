@@ -29,30 +29,30 @@ public abstract class Piece {
     public void move(char direction) {
         switch(direction) {
             case 'S':
-                moveDown(direction);
+                moveDown();
                 break;
             case 'A':
-                moveLeft(direction);
+                moveLeft();
                 break;
             case 'D':
-                moveRight(direction);
+                moveRight();
                 break;
         }
     }
 
-    private void moveDown(char direction) {
+    private void moveDown() {
     for (Block block : blocks) {
             block.moveDown();
         }
     }
 
-    private void moveLeft(char direction) {
+    private void moveLeft() {
         for (Block block : blocks) {
             block.moveLeft();
         }
     }
 
-    private void moveRight(char direction) {
+    private void moveRight() {
         for (Block block : blocks) {
             block.moveRight();
         }
