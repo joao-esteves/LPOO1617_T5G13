@@ -42,7 +42,13 @@ public class GameView implements Screen {
 
     private Stage stage;
     private Table table;
+
+    private TextButton.TextButtonStyle buttonStyle;
     private TextButton menuButton;
+    private TextButton downButton;
+    private TextButton leftButton;
+    private TextButton rightButton;
+
     private BitmapFont font;
     private Skin buttonSkin;
     private TextureAtlas atlas;
@@ -72,9 +78,70 @@ public class GameView implements Screen {
         buttonSkin.addRegions(atlas);
 
         setupCamera();
-        setupMenuButton();
+        setupButtons();
+        setupMovementInput();
 
         stage.addActor(table);
+    }
+
+    private void setupButtons() {
+        buttonStyle = new TextButton.TextButtonStyle();
+        buttonStyle.up = buttonSkin.getDrawable("greyButton");
+        buttonStyle.down = buttonSkin.getDrawable("greyDarkButton");
+        buttonStyle.font = font;
+
+        setupMenuButton();
+        setupMovementButtons();
+    }
+
+    // TODO: Keyboard and possibly gyroscope
+    private void setupMovementInput() {
+    }
+
+    private void setupMovementButtons() {
+        leftButton = new TextButton("Left", buttonStyle);
+        leftButton.getLabel().setFontScale(2f);
+        leftButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                try {
+                    model.nextCycle('A');
+                } catch (CorruptedCell corruptedCell) {
+                    corruptedCell.printStackTrace();
+                }
+            }
+        });
+
+        downButton = new TextButton("Down", buttonStyle);
+        downButton.getLabel().setFontScale(2f);
+        downButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                try {
+                    model.nextCycle('S');
+                } catch (CorruptedCell corruptedCell) {
+                    corruptedCell.printStackTrace();
+                }
+            }
+        });
+
+        rightButton = new TextButton("Right", buttonStyle);
+        rightButton.getLabel().setFontScale(2f);
+        rightButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                try {
+                    model.nextCycle('D');
+                } catch (CorruptedCell corruptedCell) {
+                    corruptedCell.printStackTrace();
+                }
+            }
+        });
+
+        table.top();
+        table.add(leftButton).width(150).height(100);
+        table.add(downButton).width(150).height(100);
+        table.add(rightButton).width(100).height(100);
     }
 
     private void initSprites(Sprite[] sprites, TextureAtlas atlas) {
@@ -90,12 +157,7 @@ public class GameView implements Screen {
     }
 
     private void setupMenuButton() {
-        TextButton.TextButtonStyle menuButtonStyle = new TextButton.TextButtonStyle();
-        menuButtonStyle.up = buttonSkin.getDrawable("greyButton");
-        menuButtonStyle.down = buttonSkin.getDrawable("greyDarkButton");
-        menuButtonStyle.font = font;
-
-        menuButton = new TextButton("Menu", menuButtonStyle);
+        menuButton = new TextButton("Menu", buttonStyle);
         menuButton.getLabel().setFontScale(2f);
         menuButton.addListener(new ChangeListener() {
             @Override
