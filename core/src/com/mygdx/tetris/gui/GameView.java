@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.mygdx.tetris.TetrisGame;
 import com.mygdx.tetris.logic.CorruptedCell;
+import com.mygdx.tetris.logic.Direction;
 import com.mygdx.tetris.logic.GameModel;
 
 import static java.lang.Math.min;
@@ -107,7 +108,7 @@ public class GameView implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 try {
-                    model.nextCycle('A');
+                    model.nextCycle(Direction.LEFT);
                 } catch (CorruptedCell corruptedCell) {
                     corruptedCell.printStackTrace();
                 }
@@ -120,7 +121,7 @@ public class GameView implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 try {
-                    model.nextCycle('S');
+                    model.nextCycle(Direction.DOWN);
                 } catch (CorruptedCell corruptedCell) {
                     corruptedCell.printStackTrace();
                 }
@@ -133,7 +134,7 @@ public class GameView implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 try {
-                    model.nextCycle('D');
+                    model.nextCycle(Direction.RIGHT);
                 } catch (CorruptedCell corruptedCell) {
                     corruptedCell.printStackTrace();
                 }
@@ -203,7 +204,7 @@ public class GameView implements Screen {
         accumulatedDelta += delta;
         try {
             if (accumulatedDelta >= 1) {
-                model.nextCycle('S');
+                model.nextCycle(Direction.DOWN);
                 accumulatedDelta = 0;
             }
         } catch (CorruptedCell corruptedCell) {

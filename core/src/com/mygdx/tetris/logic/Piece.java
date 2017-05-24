@@ -26,15 +26,15 @@ public abstract class Piece {
         this.map = map;
     }
 
-    public void move(char direction) {
+    public void move(Direction direction) {
         switch(direction) {
-            case 'S':
+            case DOWN:
                 moveDown();
                 break;
-            case 'A':
+            case LEFT:
                 moveLeft();
                 break;
-            case 'D':
+            case RIGHT:
                 moveRight();
                 break;
         }

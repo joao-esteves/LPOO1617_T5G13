@@ -1,6 +1,7 @@
 package com.mygdx.tetris.test;
 
 import com.badlogic.gdx.math.GridPoint2;
+import com.mygdx.tetris.logic.Direction;
 import com.mygdx.tetris.logic.GameMap;
 import com.mygdx.tetris.logic.Piece;
 import com.mygdx.tetris.logic.PieceFactory;
@@ -29,7 +30,7 @@ public class Test_Piece {
         ArrayList<GridPoint2> newCoords;
 
         // test move left
-        piece.move('A');
+        piece.move(Direction.LEFT);
         newCoords = piece.getCoords();
         for (int i = 0; i < oldCoords.size(); i++) {
             GridPoint2 expectedPoint = new GridPoint2(oldCoords.get(i));
@@ -37,10 +38,10 @@ public class Test_Piece {
             GridPoint2 newPoint = newCoords.get(i);
             assertEquals(expectedPoint, newPoint);
         }
-        piece.move('D');
+        piece.move(Direction.RIGHT);
 
         // test move right
-        piece.move('D');
+        piece.move(Direction.RIGHT);
         newCoords = piece.getCoords();
         for (int i = 0; i < oldCoords.size(); i++) {
             GridPoint2 expectedPoint = new GridPoint2(oldCoords.get(i));
@@ -48,10 +49,10 @@ public class Test_Piece {
             GridPoint2 newPoint = newCoords.get(i);
             assertEquals(expectedPoint, newPoint);
         }
-        piece.move('A');
+        piece.move(Direction.LEFT);
 
         // test move down
-        piece.move('S');
+        piece.move(Direction.DOWN);
         newCoords = piece.getCoords();
         for (int i = 0; i < oldCoords.size(); i++) {
             GridPoint2 expectedPoint = new GridPoint2(oldCoords.get(i));

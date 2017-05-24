@@ -53,7 +53,7 @@ public class GameModel {
 //        return newInstance;
 //    }
 
-    public void nextCycle(char direction) throws CorruptedCell {
+    public void nextCycle(Direction direction) throws CorruptedCell {
         map.clearPiece(currentPiece);
         if (map.pieceCollidedDownwards(currentPiece)) {
             blocks.addAll(currentPiece.getBlocks());
@@ -63,5 +63,14 @@ public class GameModel {
             currentPiece.move(direction);
         }
         map.drawPiece(currentPiece);
+    }
+
+    private boolean isAtEdges(Piece piece) {
+        for (Block block : piece.getBlocks()) {
+            if (block.getCoords().x == 0 || block.getCoords().x == map.getCols() - 1) {
+                return true;
+            }
+        }
+        return false;
     }
 }
