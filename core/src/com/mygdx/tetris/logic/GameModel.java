@@ -50,6 +50,7 @@ public class GameModel {
             blocks.addAll(currentPiece.getBlocks());
             map.drawBlocks(currentPiece.getBlocks());
             currentPiece = pieceFactory.makePiece(map);
+            map.drawPiece(currentPiece);
         } else {
             currentPiece.move(direction);
             map.drawPiece(currentPiece);
