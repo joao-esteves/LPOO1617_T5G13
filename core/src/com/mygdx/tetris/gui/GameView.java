@@ -2,9 +2,7 @@ package com.mygdx.tetris.gui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -18,9 +16,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.mygdx.tetris.TetrisGame;
+import com.mygdx.tetris.logic.CorruptedCell;
 import com.mygdx.tetris.logic.GameModel;
-
-import static com.badlogic.gdx.graphics.Color.RED;
 
 /**
  * Created by joaof on 12/05/2017.
@@ -31,6 +28,9 @@ public class GameView implements Screen {
     private static GameView instance = null;
 
     private int squareSize;
+    private int widthOffset = Gdx.graphics.getWidth() / 2;
+    private int heightOffset = Gdx.graphics.getHeight() / 2;
+    private float accumulatedDelta = 0;
 
     private TetrisGame game;
     private GameModel model;
@@ -60,8 +60,8 @@ public class GameView implements Screen {
         atlas = assets.get("tetris_images.pack");
 
         batch = new SpriteBatch();
+        blockSprites = new Sprite[Color.values().length];
         initSprites(blockSprites, atlas);
-
 
         stage = new Stage();
         table = new Table();
@@ -69,7 +69,6 @@ public class GameView implements Screen {
         Gdx.input.setInputProcessor(stage);
         font = new BitmapFont();
         buttonSkin = new Skin();
-  //      atlas = new TextureAtlas(Gdx.files.internal("deprecated.buttons/playButton.pack"));
         buttonSkin.addRegions(atlas);
 
         setupCamera();
@@ -79,11 +78,9 @@ public class GameView implements Screen {
     }
 
     private void initSprites(Sprite[] sprites, TextureAtlas atlas) {
-        sprites = new Sprite[Colors.values().length];
-
-        for (Colors color : Colors.values()) {
-            blockSprites[color.val] = new Sprite(atlas.findRegion(color.imgName));
-            blockSprites[color.val].setSize(squareSize, squareSize);
+        for (Color color : Color.values()) {
+            sprites[color.val] = new Sprite(atlas.findRegion(color.imgName));
+            sprites[color.val].setSize(squareSize, squareSize);
         }
     }
 
@@ -125,6 +122,8 @@ public class GameView implements Screen {
 
     @Override
     public void render(float delta) {
+        updateLogic(delta);
+
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -136,12 +135,29 @@ public class GameView implements Screen {
         drawGame();
     }
 
+    private void updateLogic(float delta) {
+        accumulatedDelta += delta;
+        try {
+            if (accumulatedDelta >= 1) {
+                model.nextCycle('S');
+                accumulatedDelta = 0;
+            }
+        } catch (CorruptedCell corruptedCell) {
+            corruptedCell.printStackTrace();
+        }
+    }
+
     private void drawGame() {
         char[][] map = model.getMap().getRepresentation();
         batch.begin();
         for (int column = 0; column < map.length; column++) {
             for (int line = 0; line < map[column].length; line++) {
-                //if ()
+                Color color = Color.getColor(map[column][line]);
+                if (color == null) {
+                    continue;
+                }
+                blockSprites[color.val].setPosition(column * squareSize - widthOffset, line * squareSize - heightOffset);
+                blockSprites[color.val].draw(batch);
             }
         }
         batch.end();
