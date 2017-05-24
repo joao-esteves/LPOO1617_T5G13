@@ -78,4 +78,12 @@ public class GameMap {
     public char[][] getRepresentation() {
         return map;
     }
+
+    public int getCols() {
+        return map.length;
+    }
+
+    public int getLines() {
+        return map[0].length;
+    }
 }

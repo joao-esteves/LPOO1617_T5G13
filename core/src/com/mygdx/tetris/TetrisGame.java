@@ -23,7 +23,7 @@ public class TetrisGame extends Game {
 	}
 
 	public void setBoardScreen() {
-		GameModel model = GameModel.getInstance(columns, lines);
+		GameModel model = new GameModel(columns, lines);
 		this.setScreen(GameView.getInstance(this, model));
 	}
 

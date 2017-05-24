@@ -2,6 +2,7 @@ package com.mygdx.tetris.test;
 
 import com.mygdx.tetris.logic.CorruptedCell;
 import com.mygdx.tetris.logic.GameModel;
+import com.mygdx.tetris.logic.Piece;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -15,17 +16,49 @@ import static org.junit.Assert.assertTrue;
 public class Test_BoardModel {
     @Test
     public void creation() {
-        GameModel game = GameModel.getInstance(1, 1);
+        GameModel game = new GameModel(6, 6);
         assertNotEquals(game, null);
     }
 
-    @Test// (timeout=1000)
+    @Test
+    public void numRowsAndColumns() {
+        int numCols = 14, numLines = 42;
+        GameModel game = new GameModel(numCols, numLines);
+        assertEquals(numCols, game.getMap().getCols());
+        assertEquals(numLines, game.getMap().getLines());
+    }
+
+    @Test //(timeout=1000)
     public void pieceReachesGround() throws CorruptedCell {
-        GameModel game = GameModel.getInstance(6, 6);
+        GameModel game = new GameModel(6, 6);
         int pieceBlocks = game.getCurrentPiece().getBlocks().size();
         while (game.getBlocks().isEmpty()) {
             game.nextCycle('S');
         }
         assertTrue(game.getBlocks().size() == pieceBlocks);
+    }
+
+    @Test //(timeout = 1000)
+    public void spawnThreePieces() throws CorruptedCell {
+        GameModel game = new GameModel(20, 20);
+        Piece firstPiece, secondPiece, thirdPiece;
+        int numExpectedBlocks = 0;
+        firstPiece = game.getCurrentPiece();
+        numExpectedBlocks += firstPiece.getBlocks().size();
+        while (game.getBlocks().isEmpty()) {
+            game.nextCycle('S');
+        }
+        secondPiece = game.getCurrentPiece();
+        numExpectedBlocks += secondPiece.getBlocks().size();
+        while (game.getBlocks().size() == firstPiece.getBlocks().size()) {
+            game.nextCycle('S');
+        }
+        thirdPiece = game.getCurrentPiece();
+        assertTrue(thirdPiece.getBlocks().size() > 0);
+        numExpectedBlocks += thirdPiece.getBlocks().size();
+        while (game.getBlocks().size() == firstPiece.getBlocks().size() + secondPiece.getBlocks().size()) {
+            game.nextCycle('S');
+        }
+        assertEquals(numExpectedBlocks, game.getBlocks().size());
     }
 }

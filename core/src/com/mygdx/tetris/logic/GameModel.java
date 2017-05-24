@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class GameModel {
 
-    private static GameModel instance = null;
+    private static ArrayList<GameModel> instances;
     private GridPoint2 spawnPos;
     private PieceFactory pieceFactory;
     private GameMap map;
@@ -28,7 +28,7 @@ public class GameModel {
         return map;
     }
 
-    private GameModel(int columns, int lines) {
+    public GameModel(int columns, int lines) {
         spawnPos = new GridPoint2(columns/2 - 1, lines - 1);
         map = new GameMap(columns, lines);
         pieceFactory = new PieceFactory(spawnPos);
@@ -37,12 +37,21 @@ public class GameModel {
         map.drawPiece(currentPiece);
     }
 
-    public static GameModel getInstance(int columns, int lines) {
-        if (instance == null) {
-            instance = new GameModel(columns, lines);
-        }
-        return instance;
-    }
+//    public static GameModel getInstance(int columns, int lines) {
+//        if (instances == null) {
+//            instances = new ArrayList<GameModel>();
+//        }
+//
+//        for (GameModel instance : instances) {
+//            if (instance.getMap().getCols() == columns && instance.getMap().getLines() == lines) {
+//                return instance;
+//            }
+//        }
+//
+//        GameModel newInstance = new GameModel(columns, lines);
+//        instances.add(newInstance);
+//        return newInstance;
+//    }
 
     public void nextCycle(char direction) throws CorruptedCell {
         map.clearPiece(currentPiece);
