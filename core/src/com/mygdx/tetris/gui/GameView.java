@@ -19,6 +19,8 @@ import com.mygdx.tetris.TetrisGame;
 import com.mygdx.tetris.logic.CorruptedCell;
 import com.mygdx.tetris.logic.GameModel;
 
+import static java.lang.Math.min;
+
 /**
  * Created by joaof on 12/05/2017.
  */
