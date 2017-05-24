@@ -51,4 +51,8 @@ public class Block {
     public char getSymbol() {
         return symbol;
     }
+
+    public void setCoords(int x, int y) {
+        coords = new GridPoint2(x, y);
+    }
 }

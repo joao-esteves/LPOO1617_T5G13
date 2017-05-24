@@ -14,4 +14,12 @@ public class StraightPiece extends Piece {
         blocks = Arrays.asList(new Block(pos.x, pos.y, map, symbol), new Block(pos.x, pos.y-1, map, symbol),
                             new Block(pos.x, pos.y-2, map, symbol), new Block(pos.x, pos.y-3, map, symbol));
     }
+
+    @Override
+    public void setPos(GridPoint2 pos) {
+        blocks.get(0).setCoords(pos.x, pos.y);
+        blocks.get(1).setCoords(pos.x, pos.y-1);
+        blocks.get(2).setCoords(pos.x, pos.y-2);
+        blocks.get(3).setCoords(pos.x, pos.y-3);
+    }
 }

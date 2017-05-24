@@ -65,4 +65,6 @@ public abstract class Piece {
     public char getSymbol() {
         return symbol;
     }
+
+    public abstract void setPos(GridPoint2 pos);
 }

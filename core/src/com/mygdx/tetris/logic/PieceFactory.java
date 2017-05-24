@@ -13,14 +13,17 @@ import java.util.Random;
 public class PieceFactory {
     private final List<Piece> pieces;
     private final Random random;
+    private GridPoint2 spawnPos;
 
     public PieceFactory(GridPoint2 spawnPos) {
+        this.spawnPos = spawnPos;
         pieces = Arrays.asList(new StraightPiece(spawnPos), new SquarePiece(spawnPos));
         random = new Random();
     }
 
     public Piece makePiece(GameMap map) {
         Piece piece = pieces.get(random.nextInt(pieces.size()));
+        piece.setPos(spawnPos);
         piece.setMap(map);
         return piece;
     }
