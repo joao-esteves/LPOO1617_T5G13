@@ -9,8 +9,7 @@ import java.util.List;
  */
 
 public class GameMap {
-    public static final char blockSymbol = 'X';
-    public static final char pieceSymbol = 'P';
+    public static final char[] blockSymbols = {'I','J','L','O','S','T','Z'};
     private char[][] map;
 
     public GameMap(int columns, int lines) {
@@ -21,7 +20,7 @@ public class GameMap {
         for (int i = 0; i < piece.blocks.size(); i++) {
             Block block = piece.blocks.get(i);
             if (!isOcuppied(block.getCoords())) {
-                drawCell(block.getCoords(), pieceSymbol);
+                drawCell(block.getCoords(), piece.getSymbol());
             } else {
                 for (int j = 0; j < i; j++) {
                     Block currentBlock = piece.blocks.get(j);
@@ -47,7 +46,7 @@ public class GameMap {
         for (int i = 0; i < blocks.size(); i++) {
             Block block = blocks.get(i);
             if (!isOcuppied(block.getCoords())) {
-                drawCell(block.getCoords(), blockSymbol);
+                drawCell(block.getCoords(), block.getSymbol());
             } else {
                 throw new CorruptedCell(block.getCoords());
             }
@@ -55,13 +54,7 @@ public class GameMap {
     }
 
     private boolean isOcuppied(GridPoint2 coords) {
-        switch (map[coords.x][coords.y]) {
-            case blockSymbol:
-            case pieceSymbol:
-                return true;
-            default:
-                return false;
-        }
+        return (map[coords.x][coords.y] != '\0');
     }
 
     private void clearCell(GridPoint2 coords) {

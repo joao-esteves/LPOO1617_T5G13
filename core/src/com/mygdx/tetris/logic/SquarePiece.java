@@ -11,7 +11,8 @@ import java.util.List;
  */
 public class SquarePiece extends Piece {
     public SquarePiece(GridPoint2 pos) {
-        blocks = Arrays.asList(new Block(pos.x, pos.y, map), new Block(pos.x+1, pos.y, map),
-                            new Block(pos.x, pos.y-1, map), new Block(pos.x+1, pos.y-1, map));
+        symbol = 'O';
+        blocks = Arrays.asList(new Block(pos.x, pos.y, map, symbol), new Block(pos.x+1, pos.y, map, symbol),
+                            new Block(pos.x, pos.y-1, map, symbol), new Block(pos.x+1, pos.y-1, map, symbol));
     }
 }

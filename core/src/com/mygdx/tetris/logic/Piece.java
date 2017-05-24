@@ -12,6 +12,7 @@ import java.util.List;
 public abstract class Piece {
     protected List<Block> blocks;
     protected GameMap map;
+    protected char symbol;
 
     public ArrayList<GridPoint2> getCoords() {
         ArrayList<GridPoint2> coords = new ArrayList<GridPoint2>();
@@ -59,5 +60,9 @@ public abstract class Piece {
 
     public List<Block> getBlocks() {
         return blocks;
+    }
+
+    public char getSymbol() {
+        return symbol;
     }
 }

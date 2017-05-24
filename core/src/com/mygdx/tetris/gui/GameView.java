@@ -1,10 +1,14 @@
 package com.mygdx.tetris.gui;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -19,43 +23,61 @@ import com.mygdx.tetris.logic.GameModel;
  * Created by joaof on 12/05/2017.
  */
 
-public class GameView extends ScreenAdapter {
+public class GameView implements Screen {
 
     private static GameView instance = null;
 
+    private int squareSize;
+
     private TetrisGame game;
     private GameModel model;
+
+    private OrthographicCamera camera;
+    private AssetManager assets;
+    private SpriteBatch batch;
+    private Sprite sprite;
 
     private Stage stage;
     private Table table;
     private TextButton menuButton;
     private BitmapFont font;
     private Skin buttonSkin;
-    private TextureAtlas buttonAtlas;
+    private TextureAtlas atlas;
 
     private GameView(TetrisGame tetrisGame, GameModel model) {
         this.game = tetrisGame;
         this.model = model;
 
+        squareSize = Gdx.graphics.getWidth() / game.getColumns();
+
+        assets = new AssetManager();
+        assets.load("tetris_images.pack", TextureAtlas.class);
+        assets.finishLoading();
+
+        atlas = assets.get("tetris_images.pack");
+
+        batch = new SpriteBatch();
+        sprite = new Sprite(atlas.findRegion("red_block"));
+        sprite.setSize(squareSize, squareSize);
+
         stage = new Stage();
         table = new Table();
         table.setFillParent(true);
-      //  table.right();
         Gdx.input.setInputProcessor(stage);
         font = new BitmapFont();
         buttonSkin = new Skin();
-        buttonAtlas = new TextureAtlas(Gdx.files.internal("buttons/playButton.pack"));
-        buttonSkin.addRegions(buttonAtlas);
+  //      atlas = new TextureAtlas(Gdx.files.internal("deprecated.buttons/playButton.pack"));
+        buttonSkin.addRegions(atlas);
 
-        setupGameViewport();
+        setupCamera();
         setupMenuButton();
 
         stage.addActor(table);
     }
 
-    private void setupGameViewport() {
-        OrthographicCamera camera = new OrthographicCamera();
-    //    camera.setToOrtho(false, Gdx.graphics.);
+    private void setupCamera() {
+        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        camera.update();
     }
 
     private void setupMenuButton() {
@@ -94,7 +116,34 @@ public class GameView extends ScreenAdapter {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        batch.setProjectionMatrix(camera.combined);
+
+        stage.act(delta);
         stage.draw();
+
+        batch.begin();
+        sprite.draw(batch);
+        batch.end();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        camera.update();
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
     }
 
     @Override
@@ -103,6 +152,6 @@ public class GameView extends ScreenAdapter {
         buttonSkin.dispose();
         font.dispose();
         buttonSkin.dispose();
-        buttonAtlas.dispose();
+        atlas.dispose();
     }
 }

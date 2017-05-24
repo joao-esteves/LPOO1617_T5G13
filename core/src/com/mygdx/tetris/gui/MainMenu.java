@@ -27,7 +27,7 @@ public class MainMenu extends ScreenAdapter {
     private TextButton playButton;
     private BitmapFont font;
     private Skin buttonSkin;
-    private TextureAtlas buttonAtlas;
+    private TextureAtlas atlas;
 
     private static MainMenu instance = null;
 
@@ -39,8 +39,8 @@ public class MainMenu extends ScreenAdapter {
         Gdx.input.setInputProcessor(stage);
         font = new BitmapFont();
         buttonSkin = new Skin();
-        buttonAtlas = new TextureAtlas(Gdx.files.internal("buttons/playButton.pack"));
-        buttonSkin.addRegions(buttonAtlas);
+        atlas = new TextureAtlas(Gdx.files.internal("tetris_images.pack"));
+        buttonSkin.addRegions(atlas);
 
         setupPlayButton();
 
@@ -91,6 +91,6 @@ public class MainMenu extends ScreenAdapter {
         buttonSkin.dispose();
         font.dispose();
         buttonSkin.dispose();
-        buttonAtlas.dispose();
+        atlas.dispose();
     }
 }

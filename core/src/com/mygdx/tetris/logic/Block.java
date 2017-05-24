@@ -10,15 +10,18 @@ import java.awt.Point;
 public class Block {
     private GridPoint2 coords;
     private GameMap map;
+    private char symbol;
 
-    public Block(int x, int y, GameMap map) {
+    public Block(int x, int y, GameMap map, char symbol) {
         coords = new GridPoint2(x, y);
         this.map = map;
+        this.symbol = symbol;
     }
 
-    public Block(GridPoint2 coords, GameMap map) {
+    public Block(GridPoint2 coords, GameMap map, char symbol) {
         setCoords(coords);
         this.map = map;
+        this.symbol = symbol;
     }
 
     public void setCoords(GridPoint2 coords) {
@@ -42,6 +45,10 @@ public class Block {
     }
 
     public Object clone() {
-        return new Block(coords, map);
+        return new Block(coords, map, symbol);
+    }
+
+    public char getSymbol() {
+        return symbol;
     }
 }
