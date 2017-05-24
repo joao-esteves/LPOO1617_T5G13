@@ -48,11 +48,21 @@ public abstract class Piece {
 
     private void moveLeft() {
         for (Block block : blocks) {
+            if (block.getCoords().x == 0) {
+                return;
+            }
+        }
+        for (Block block : blocks) {
             block.moveLeft();
         }
     }
 
     private void moveRight() {
+        for (Block block : blocks) {
+            if (block.getCoords().x == map.getCols() - 1) {
+                return;
+            }
+        }
         for (Block block : blocks) {
             block.moveRight();
         }

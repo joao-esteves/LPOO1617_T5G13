@@ -15,7 +15,7 @@ public class TetrisGame extends Game {
 		return lines;
 	}
 
-	private int columns = 10, lines = 10;
+	private int columns = 10, lines = 20;
 
 	@Override
 	public void create () {

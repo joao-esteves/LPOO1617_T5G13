@@ -59,7 +59,7 @@ public class GameModel {
             blocks.addAll(currentPiece.getBlocks());
             map.drawBlocks(currentPiece.getBlocks());
             currentPiece = pieceFactory.makePiece(map);
-        } else if (!isAtEdges(currentPiece)){
+        } else {
             currentPiece.move(direction);
         }
         map.drawPiece(currentPiece);
