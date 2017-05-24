@@ -74,4 +74,8 @@ public class GameMap {
         }
         return false;
     }
+
+    public char[][] getRepresentation() {
+        return map;
+    }
 }

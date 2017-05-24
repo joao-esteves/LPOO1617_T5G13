@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -18,6 +19,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.mygdx.tetris.TetrisGame;
 import com.mygdx.tetris.logic.GameModel;
+
+import static com.badlogic.gdx.graphics.Color.RED;
 
 /**
  * Created by joaof on 12/05/2017.
@@ -35,7 +38,7 @@ public class GameView implements Screen {
     private OrthographicCamera camera;
     private AssetManager assets;
     private SpriteBatch batch;
-    private Sprite sprite;
+    private Sprite[] blockSprites;
 
     private Stage stage;
     private Table table;
@@ -57,8 +60,8 @@ public class GameView implements Screen {
         atlas = assets.get("tetris_images.pack");
 
         batch = new SpriteBatch();
-        sprite = new Sprite(atlas.findRegion("red_block"));
-        sprite.setSize(squareSize, squareSize);
+        initSprites(blockSprites, atlas);
+
 
         stage = new Stage();
         table = new Table();
@@ -73,6 +76,15 @@ public class GameView implements Screen {
         setupMenuButton();
 
         stage.addActor(table);
+    }
+
+    private void initSprites(Sprite[] sprites, TextureAtlas atlas) {
+        sprites = new Sprite[Colors.values().length];
+
+        for (Colors color : Colors.values()) {
+            blockSprites[color.val] = new Sprite(atlas.findRegion(color.imgName));
+            blockSprites[color.val].setSize(squareSize, squareSize);
+        }
     }
 
     private void setupCamera() {
@@ -121,14 +133,23 @@ public class GameView implements Screen {
         stage.act(delta);
         stage.draw();
 
+        drawGame();
+    }
+
+    private void drawGame() {
+        char[][] map = model.getMap().getRepresentation();
         batch.begin();
-        sprite.draw(batch);
+        for (int column = 0; column < map.length; column++) {
+            for (int line = 0; line < map[column].length; line++) {
+                //if ()
+            }
+        }
         batch.end();
     }
 
     @Override
     public void resize(int width, int height) {
-        camera.update();
+    //    camera.update();
     }
 
     @Override
