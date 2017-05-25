@@ -6,11 +6,11 @@ package com.mygdx.tetris.gui;
 
 // TODO: Color besides red
 public enum Color {
-    CYAN (0, "red_block", 'I'),
-    BLUE (1, "red_block", 'J'),
-    GREEN (2, "red_block", 'S'),
-    YELLOW (3, "red_block", 'O'),
-    ORANGE (4, "red_block", 'L'),
+    CYAN (0, "cyan_block", 'I'),
+    BLUE (1, "blue_block", 'J'),
+    GREEN (2, "green_block", 'S'),
+    YELLOW (3, "yellow_block", 'O'),
+    ORANGE (4, "orange_block", 'L'),
     RED (5, "red_block", 'Z');
 
     public int val;
