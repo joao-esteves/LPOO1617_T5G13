@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.tetris.TetrisGame;
 import com.mygdx.tetris.logic.CorruptedCell;
 import com.mygdx.tetris.logic.Direction;
@@ -144,7 +145,7 @@ public class GameView implements Screen {
         table.top();
         table.add(leftButton).width(150).height(100);
         table.add(downButton).width(150).height(100);
-        table.add(rightButton).width(100).height(100);
+        table.add(rightButton).width(150).height(100);
     }
 
     private void initSprites(Sprite[] sprites, TextureAtlas atlas) {
@@ -202,6 +203,13 @@ public class GameView implements Screen {
 
     private void updateLogic(float delta) {
         accumulatedDelta += delta;
+        /*if (downButton.isPressed()) {
+            try {
+                model.nextCycle(Direction.DOWN);
+            } catch (CorruptedCell corruptedCell) {
+                corruptedCell.printStackTrace();
+            }
+        }*/
         try {
             if (accumulatedDelta >= 1) {
                 model.nextCycle(Direction.DOWN);
