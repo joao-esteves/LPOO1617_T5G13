@@ -23,6 +23,10 @@ public class Block implements Comparable {
         this.coords = coords;
     }
 
+    public void setCoords(int x, int y) {
+        coords = new GridPoint2(x, y);
+    }
+
     public GridPoint2 getCoords() {
         return new GridPoint2(coords);
     }
@@ -47,10 +51,7 @@ public class Block implements Comparable {
         return symbol;
     }
 
-    public void setCoords(int x, int y) {
-        coords = new GridPoint2(x, y);
-    }
-
+    // Ordered vertically for priority queue.
     @Override
     public int compareTo(Object o) {
         if (this.getCoords().y > ((Block) o).getCoords().y) {
