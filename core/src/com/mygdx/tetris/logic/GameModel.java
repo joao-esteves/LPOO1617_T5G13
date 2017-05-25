@@ -2,6 +2,7 @@ package com.mygdx.tetris.logic;
 
 import com.badlogic.gdx.math.GridPoint2;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by joaof on 12/05/2017.
@@ -16,6 +17,7 @@ public class GameModel {
     private ArrayList<Block> blocks;
     private Piece currentPiece;
     private GameStatus status;
+    private int completedLines;
 
     public Piece getCurrentPiece() {
         return currentPiece;
@@ -37,6 +39,7 @@ public class GameModel {
         currentPiece = pieceFactory.makePiece(map);
         map.drawPiece(currentPiece);
         status = GameStatus.ONGOING;
+        completedLines = 0;
     }
 
 //    public static GameModel getInstance(int columns, int lines) {
@@ -60,9 +63,11 @@ public class GameModel {
             return;
         }
         map.clearPiece(currentPiece);
+    //    dropFloatingBlocks();
         if (map.pieceCollidedDownwards(currentPiece)) {
             blocks.addAll(currentPiece.getBlocks());
             map.drawBlocks(currentPiece.getBlocks());
+            checkLineCompletion(currentPiece.getBlocks());
             currentPiece = pieceFactory.makePiece(map);
             if (map.isOccupied(currentPiece)) {
                 loseGame();
@@ -71,6 +76,16 @@ public class GameModel {
             currentPiece.move(direction);
         }
         map.drawPiece(currentPiece);
+    }
+
+    private void checkLineCompletion(List<Block> blocks) {
+        for (Block block : blocks) {
+            if (map.lineIsCompleted(block.getCoords().y)) {
+                completedLines++;
+                map.eraseLine(block.getCoords().y);
+                this.blocks.removeAll(blocks);
+            }
+        }
     }
 
     private void loseGame() {

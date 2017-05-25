@@ -91,4 +91,19 @@ public class GameMap {
     public int getLines() {
         return map[0].length;
     }
+
+    public boolean lineIsCompleted(int y) {
+        for (int x = 0; x < getCols(); x++) {
+            if (!isOccupied(x, y)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void eraseLine(int y) {
+        for (int x = 0; x < getCols(); x++) {
+            clearCell(new GridPoint2(x, y));
+        }
+    }
 }
