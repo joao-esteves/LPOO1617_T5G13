@@ -1,9 +1,12 @@
 package com.mygdx.tetris.logic;
 
 import com.badlogic.gdx.math.GridPoint2;
+import com.badlogic.gdx.scenes.scene2d.ui.Tree;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.TreeSet;
 
 /**
  * Created by joaof on 12/05/2017.
@@ -15,7 +18,7 @@ public class GameModel {
     private GridPoint2 spawnPos;
     private PieceFactory pieceFactory;
     private GameMap map;
-    private PriorityQueue<Block> blocks;
+    private TreeSet<Block> blocks;
     private Piece currentPiece;
     private GameStatus status;
     private int completedLines;
@@ -24,7 +27,7 @@ public class GameModel {
         return currentPiece;
     }
 
-    public PriorityQueue<Block> getBlocks() {
+    public TreeSet<Block> getBlocks() {
         return blocks;
     }
 
@@ -36,7 +39,7 @@ public class GameModel {
         spawnPos = new GridPoint2(columns/2 - 1, lines - 1);
         map = new GameMap(columns, lines);
         pieceFactory = new PieceFactory(spawnPos);
-        blocks = new PriorityQueue<Block>();
+        blocks = new TreeSet<Block>();
         currentPiece = pieceFactory.makePiece(map);
         map.drawPiece(currentPiece);
         status = GameStatus.ONGOING;
@@ -78,23 +81,58 @@ public class GameModel {
         map.drawPiece(currentPiece);
     }
 
-    public void dropFloatingBlocks() {
+//    public void dropFloatingBlocks() {
+//        for (Block block : blocks) {
+//            if (!map.blockHasFloor(block)) {
+//                map.clearCell(block.getCoords());
+//                block.moveDown();
+//                map.drawCell(block.getCoords(), block.getSymbol());
+//            }
+//        }
+//    }
+
+    private void checkLineCompletion(List<Block> blocks) {
+        ArrayList<Integer> linesToRemove = new ArrayList<Integer>();
         for (Block block : blocks) {
-            if (!map.blockHasFloor(block)) {
-                map.clearCell(block.getCoords());
+            if (!linesToRemove.contains(block.getCoords().y) && map.lineIsCompleted(block.getCoords().y)) {
+                linesToRemove.add(block.getCoords().y);
+            }
+        }
+        completedLines += linesToRemove.size();
+        int lineAboveCleared = 0;
+        for (int line : linesToRemove) {
+            map.eraseLine(line);
+            removeLineBlocks(line);
+            if (line > lineAboveCleared) {
+                lineAboveCleared = line;
+            }
+        }
+        dropBlocksFrom(lineAboveCleared, linesToRemove.size());
+    }
+
+    private void dropBlocksFrom(int line, int dropLength) {
+        for (Object o : this.blocks.toArray()) {
+            Block block = (Block) o;
+            if (block.getCoords().y < line) {
+                continue;
+            }
+            for (int i = 0; i < dropLength; i++) {
                 block.moveDown();
-                map.drawCell(block.getCoords(), block.getSymbol());
             }
         }
     }
 
-    private void checkLineCompletion(List<Block> blocks) {
-        for (Block block : blocks) {
-            if (map.lineIsCompleted(block.getCoords().y)) {
-                completedLines++;
-                map.eraseLine(block.getCoords().y);
-                this.blocks.removeAll(blocks);
+    // Assuming this.blocks is ordered vertically.
+    private void removeLineBlocks(int line) {
+        for (Object o : this.blocks.toArray()) {
+            Block block = (Block) o;
+            if (block.getCoords().y < line) {
+                continue;
             }
+            if (block.getCoords().y > line) {
+                break;
+            }
+            this.blocks.remove(block);
         }
     }
 

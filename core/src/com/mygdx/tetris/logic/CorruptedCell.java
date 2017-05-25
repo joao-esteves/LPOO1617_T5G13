@@ -11,4 +11,8 @@ public class CorruptedCell extends Throwable {
     public CorruptedCell(GridPoint2 coords) {
         this.coords = coords;
     }
+
+    public GridPoint2 getCoords() {
+        return coords;
+    }
 }

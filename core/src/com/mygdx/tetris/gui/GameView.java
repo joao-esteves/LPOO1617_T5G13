@@ -217,7 +217,7 @@ public class GameView implements Screen {
         try {
             if (accumulatedDelta >= 1) {
                 model.nextCycle(Direction.DOWN);
-                model.dropFloatingBlocks();
+            //    model.dropFloatingBlocks();
                 accumulatedDelta = 0;
             }
         } catch (CorruptedCell corruptedCell) {
