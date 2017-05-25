@@ -32,9 +32,9 @@ public class GameView implements Screen {
     private static GameView instance = null;
 
     private int squareSize;
-    private int widthOffset = Gdx.graphics.getWidth() / 2;
-    private int heightOffset = Gdx.graphics.getHeight() / 2;
-    private float accumulatedDelta = 0;
+    private int widthOffset;
+    private int heightOffset;
+    private float accumulatedDelta;
 
     private TetrisGame game;
     private GameModel model;
@@ -61,7 +61,11 @@ public class GameView implements Screen {
         this.game = tetrisGame;
         this.model = model;
 
-        squareSize = Gdx.graphics.getWidth() / game.getColumns();
+        int buttonMargin = 100;
+        squareSize = min(Gdx.graphics.getWidth() / game.getColumns(), (Gdx.graphics.getHeight() - buttonMargin) / game.getLines());
+        widthOffset = squareSize * game.getColumns() / 2;
+        heightOffset = Gdx.graphics.getHeight() / 2;
+        accumulatedDelta = 0;
 
         assets = new AssetManager();
         assets.load("tetris_images.pack", TextureAtlas.class);
