@@ -18,9 +18,9 @@ public class SquarePiece extends Piece {
 
     @Override
     public void setPos(GridPoint2 pos) {
-        blocks.get(0).setCoords(pos.x, pos.y);
-        blocks.get(1).setCoords(pos.x+1, pos.y);
-        blocks.get(2).setCoords(pos.x, pos.y-1);
-        blocks.get(3).setCoords(pos.x+1, pos.y-1);
+        blocks.set(0, new Block(pos.x, pos.y, symbol));
+        blocks.set(1, new Block(pos.x+1, pos.y, symbol));
+        blocks.set(2, new Block(pos.x, pos.y-1, symbol));
+        blocks.set(3, new Block(pos.x+1, pos.y-1, symbol));
     }
 }
