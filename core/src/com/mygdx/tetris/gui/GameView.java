@@ -205,6 +205,7 @@ public class GameView implements Screen {
         try {
             if (accumulatedDelta >= 1) {
                 model.nextCycle(Direction.DOWN);
+             //   model.dropFloatingBlocks(); //TODO: Separating falling pieces
                 accumulatedDelta = 0;
             }
         } catch (CorruptedCell corruptedCell) {

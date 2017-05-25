@@ -62,11 +62,11 @@ public class GameMap {
         return (map[coords.x][coords.y] != '\0');
     }
 
-    private void clearCell(GridPoint2 coords) {
+    protected void clearCell(GridPoint2 coords) {
         map[coords.x][coords.y] = '\0';
     }
 
-    private void drawCell(GridPoint2 coords, char symbol) {
+    protected void drawCell(GridPoint2 coords, char symbol) {
         map[coords.x][coords.y] = symbol;
     }
 
@@ -105,5 +105,12 @@ public class GameMap {
         for (int x = 0; x < getCols(); x++) {
             clearCell(new GridPoint2(x, y));
         }
+    }
+
+    public boolean blockHasFloor(Block block) {
+        if (block.getCoords().y == 0) {
+            return true;
+        }
+        return isOccupied(block.getCoords().x, block.getCoords().y - 1);
     }
 }

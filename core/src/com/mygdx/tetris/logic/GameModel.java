@@ -3,6 +3,7 @@ package com.mygdx.tetris.logic;
 import com.badlogic.gdx.math.GridPoint2;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
 
 /**
  * Created by joaof on 12/05/2017.
@@ -14,7 +15,7 @@ public class GameModel {
     private GridPoint2 spawnPos;
     private PieceFactory pieceFactory;
     private GameMap map;
-    private ArrayList<Block> blocks;
+    private PriorityQueue<Block> blocks;
     private Piece currentPiece;
     private GameStatus status;
     private int completedLines;
@@ -23,7 +24,7 @@ public class GameModel {
         return currentPiece;
     }
 
-    public ArrayList<Block> getBlocks() {
+    public PriorityQueue<Block> getBlocks() {
         return blocks;
     }
 
@@ -35,7 +36,7 @@ public class GameModel {
         spawnPos = new GridPoint2(columns/2 - 1, lines - 1);
         map = new GameMap(columns, lines);
         pieceFactory = new PieceFactory(spawnPos);
-        blocks = new ArrayList<Block>();
+        blocks = new PriorityQueue<Block>();
         currentPiece = pieceFactory.makePiece(map);
         map.drawPiece(currentPiece);
         status = GameStatus.ONGOING;
@@ -59,11 +60,10 @@ public class GameModel {
 //    }
 
     public void nextCycle(Direction direction) throws CorruptedCell {
-        if (status != status.ONGOING) {
+        if (status != GameStatus.ONGOING) {
             return;
         }
         map.clearPiece(currentPiece);
-    //    dropFloatingBlocks();
         if (map.pieceCollidedDownwards(currentPiece)) {
             blocks.addAll(currentPiece.getBlocks());
             map.drawBlocks(currentPiece.getBlocks());
@@ -76,6 +76,16 @@ public class GameModel {
             currentPiece.move(direction);
         }
         map.drawPiece(currentPiece);
+    }
+
+    public void dropFloatingBlocks() {
+        for (Block block : blocks) {
+            if (!map.blockHasFloor(block)) {
+                map.clearCell(block.getCoords());
+                block.moveDown();
+                map.drawCell(block.getCoords(), block.getSymbol());
+            }
+        }
     }
 
     private void checkLineCompletion(List<Block> blocks) {

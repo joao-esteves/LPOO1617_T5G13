@@ -2,25 +2,20 @@ package com.mygdx.tetris.logic;
 
 import com.badlogic.gdx.math.GridPoint2;
 
-import java.awt.Point;
-
 /**
  * Created by up201505145 on 22/05/2017.
  */
-public class Block {
+public class Block implements Comparable {
     private GridPoint2 coords;
-    private GameMap map;
     private char symbol;
 
-    public Block(int x, int y, GameMap map, char symbol) {
+    public Block(int x, int y, char symbol) {
         coords = new GridPoint2(x, y);
-        this.map = map;
         this.symbol = symbol;
     }
 
-    public Block(GridPoint2 coords, GameMap map, char symbol) {
+    public Block(GridPoint2 coords, char symbol) {
         setCoords(coords);
-        this.map = map;
         this.symbol = symbol;
     }
 
@@ -45,7 +40,7 @@ public class Block {
     }
 
     public Object clone() {
-        return new Block(coords, map, symbol);
+        return new Block(coords, symbol);
     }
 
     public char getSymbol() {
@@ -55,4 +50,18 @@ public class Block {
     public void setCoords(int x, int y) {
         coords = new GridPoint2(x, y);
     }
+
+    @Override
+    public int compareTo(Object o) {
+        if (this.getCoords().y > ((Block) o).getCoords().y) {
+            return 1;
+        } else if (this.getCoords().y == ((Block) o).getCoords().y) {
+            return 0;
+        } else {
+            return -1;
+        }
+    }
+
+    // For priority queue ordering by vertical position.
+
 }

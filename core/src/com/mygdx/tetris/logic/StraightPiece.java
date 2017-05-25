@@ -11,8 +11,8 @@ import java.util.List;
 public class StraightPiece extends Piece {
     public StraightPiece(GridPoint2 pos) {
         symbol = 'I';
-        blocks = Arrays.asList(new Block(pos.x, pos.y, map, symbol), new Block(pos.x, pos.y-1, map, symbol),
-                            new Block(pos.x, pos.y-2, map, symbol), new Block(pos.x, pos.y-3, map, symbol));
+        blocks = Arrays.asList(new Block(pos.x, pos.y, symbol), new Block(pos.x, pos.y-1, symbol),
+                            new Block(pos.x, pos.y-2, symbol), new Block(pos.x, pos.y-3, symbol));
     }
 
     @Override
