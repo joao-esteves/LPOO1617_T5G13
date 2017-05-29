@@ -2,7 +2,6 @@ package com.mygdx.tetris.logic;
 
 import com.badlogic.gdx.math.GridPoint2;
 
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 

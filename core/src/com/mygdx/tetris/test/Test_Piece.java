@@ -8,7 +8,6 @@ import com.mygdx.tetris.logic.PieceFactory;
 
 import org.junit.Test;
 
-import java.awt.Point;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
