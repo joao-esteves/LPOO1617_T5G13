@@ -11,9 +11,18 @@ import java.util.List;
  */
 public class SquarePiece extends Piece {
     public SquarePiece(GridPoint2 pos) {
+        orientation = Direction.UP;
         symbol = 'O';
         blocks = Arrays.asList(new Block(pos.x, pos.y, symbol), new Block(pos.x+1, pos.y, symbol),
                             new Block(pos.x, pos.y-1, symbol), new Block(pos.x+1, pos.y-1, symbol));
+    }
+
+    @Override
+    protected void rotateClockwise() {
+    }
+
+    @Override
+    protected void rotateAnticlockwise() {
     }
 
     @Override

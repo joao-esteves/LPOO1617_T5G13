@@ -114,6 +114,7 @@ public class GameView implements Screen {
             public void changed(ChangeEvent event, Actor actor) {
                 try {
                     model.nextCycle(Direction.LEFT);
+                    //model.nextCycle(Direction.ROT_ANTICLOCKWISE);
                 } catch (CorruptedCell corruptedCell) {
                     corruptedCell.printStackTrace();
                 }
@@ -140,6 +141,7 @@ public class GameView implements Screen {
             public void changed(ChangeEvent event, Actor actor) {
                 try {
                     model.nextCycle(Direction.RIGHT);
+                    //model.nextCycle(Direction.ROT_CLOCKWISE);
                 } catch (CorruptedCell corruptedCell) {
                     corruptedCell.printStackTrace();
                 }

@@ -12,6 +12,7 @@ public abstract class Piece {
     protected List<Block> blocks;
     protected GameMap map;
     protected char symbol;
+    protected Direction orientation;
 
     public ArrayList<GridPoint2> getCoords() {
         ArrayList<GridPoint2> coords = new ArrayList<GridPoint2>();
@@ -36,8 +37,18 @@ public abstract class Piece {
             case RIGHT:
                 moveRight();
                 break;
+            case ROT_ANTICLOCKWISE:
+                rotateAnticlockwise();
+                break;
+            case ROT_CLOCKWISE:
+                rotateClockwise();
+                break;
         }
     }
+
+    protected abstract void rotateClockwise();
+
+    protected abstract void rotateAnticlockwise();
 
     private void moveDown() {
     for (Block block : blocks) {
