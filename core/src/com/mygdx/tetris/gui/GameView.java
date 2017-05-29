@@ -3,6 +3,7 @@ package com.mygdx.tetris.gui;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -11,9 +12,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.tetris.TetrisGame;
@@ -36,6 +39,8 @@ public class GameView implements Screen {
     private int heightOffset;
     private float accumulatedDelta;
 
+    private int score;
+
     private TetrisGame game;
     private GameModel model;
 
@@ -53,6 +58,9 @@ public class GameView implements Screen {
     private TextButton leftButton;
     private TextButton rightButton;
 
+    private Label scoreLabel;
+    private TextField scoreField;
+
     private BitmapFont font;
     private Skin buttonSkin;
     private TextureAtlas atlas;
@@ -67,6 +75,8 @@ public class GameView implements Screen {
         heightOffset = Gdx.graphics.getHeight() / 2;
         accumulatedDelta = 0;
 
+        score = 0;
+
         assets = new AssetManager();
         assets.load("tetris_images.pack", TextureAtlas.class);
         assets.finishLoading();
@@ -74,7 +84,7 @@ public class GameView implements Screen {
         atlas = assets.get("tetris_images.pack");
 
         batch = new SpriteBatch();
-        blockSprites = new Sprite[Color.values().length];
+        blockSprites = new Sprite[ColorEnum.values().length];
         initSprites(blockSprites, atlas);
 
         stage = new Stage();
@@ -88,8 +98,23 @@ public class GameView implements Screen {
         setupCamera();
         setupButtons();
         setupMovementInput();
+        setupScore();
 
         stage.addActor(table);
+    }
+
+    private void setupScore() {
+        Label.LabelStyle scoreLabelStyle = new Label.LabelStyle();
+        TextField.TextFieldStyle scoreFieldStyle = new TextField.TextFieldStyle();
+        scoreLabelStyle.font = font;
+        scoreFieldStyle.font = font;
+        scoreFieldStyle.fontColor = new Color(0, 0, 0, 1);
+        scoreLabel = new Label("Score: ", scoreLabelStyle);
+        scoreField = new TextField("" + score, scoreFieldStyle);
+
+        table.row();
+        table.add(scoreLabel);
+        table.add(scoreField);
     }
 
     private void setupButtons() {
@@ -155,7 +180,7 @@ public class GameView implements Screen {
     }
 
     private void initSprites(Sprite[] sprites, TextureAtlas atlas) {
-        for (Color color : Color.values()) {
+        for (ColorEnum color : ColorEnum.values()) {
             sprites[color.val] = new Sprite(atlas.findRegion(color.imgName));
             sprites[color.val].setSize(squareSize, squareSize);
         }
@@ -219,7 +244,7 @@ public class GameView implements Screen {
         try {
             if (accumulatedDelta >= 1) {
                 model.nextCycle(Direction.DOWN);
-            //    model.dropFloatingBlocks();
+                score = model.getCompletedLines();
                 accumulatedDelta = 0;
             }
         } catch (CorruptedCell corruptedCell) {
@@ -232,7 +257,7 @@ public class GameView implements Screen {
         batch.begin();
         for (int column = 0; column < map.length; column++) {
             for (int line = 0; line < map[column].length; line++) {
-                Color color = Color.getColor(map[column][line]);
+                ColorEnum color = ColorEnum.getColor(map[column][line]);
                 if (color == null) {
                     continue;
                 }

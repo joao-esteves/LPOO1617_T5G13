@@ -47,6 +47,11 @@ public class GameModel {
         return map;
     }
 
+
+    public int getCompletedLines() {
+        return completedLines;
+    }
+
     /**
      * Initializes a game with user-defined dimensions.
      * @param columns Map columns (width).

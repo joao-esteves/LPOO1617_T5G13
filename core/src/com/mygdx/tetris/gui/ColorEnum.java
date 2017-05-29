@@ -4,8 +4,8 @@ package com.mygdx.tetris.gui;
  * Created by up201505145 on 24/05/2017.
  */
 
-// TODO: Color besides red
-public enum Color {
+// TODO: ColorEnum besides red
+public enum ColorEnum {
     CYAN (0, "cyan_block", 'I'),
     BLUE (1, "blue_block", 'J'),
     GREEN (2, "green_block", 'S'),
@@ -17,14 +17,14 @@ public enum Color {
     public String imgName;
     public char symbol;
 
-    private Color(int value, String imgName, char symbol) {
+    private ColorEnum(int value, String imgName, char symbol) {
         this.val = value;
         this.imgName = imgName;
         this.symbol = symbol;
     }
 
-    public static Color getColor(char symbol) {
-        for (Color color : Color.values()) {
+    public static ColorEnum getColor(char symbol) {
+        for (ColorEnum color : ColorEnum.values()) {
             if (symbol == color.symbol) {
                 return color;
             }
