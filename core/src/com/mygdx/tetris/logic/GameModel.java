@@ -9,7 +9,7 @@ import java.util.PriorityQueue;
 import java.util.TreeSet;
 
 /**
- * Created by joaof on 12/05/2017.
+ * Main logic component. Holds the blocks, score and others.
  */
 
 public class GameModel {
@@ -23,18 +23,35 @@ public class GameModel {
     private GameStatus status;
     private int completedLines;
 
+    /**
+     * Returns the piece being controlled by the user.
+     * @return
+     */
     public Piece getCurrentPiece() {
         return currentPiece;
     }
 
+    /**
+     * Returns the blocks currently laid down, all the blocks which aren't in the current piece.
+     * @return Blocks.
+     */
     public TreeSet<Block> getBlocks() {
         return blocks;
     }
 
+    /**
+     * Returns the map, a 2D matrix of symbols.
+     * @return Map.
+     */
     public GameMap getMap() {
         return map;
     }
 
+    /**
+     * Initializes a game with user-defined dimensions.
+     * @param columns Map columns (width).
+     * @param lines Map lines (height).
+     */
     public GameModel(int columns, int lines) {
         spawnPos = new GridPoint2(columns/2 - 1, lines - 1);
         map = new GameMap(columns, lines);
@@ -62,6 +79,12 @@ public class GameModel {
 //        return newInstance;
 //    }
 
+    /**
+     * Advances the game's flow.
+     * Each cycle will move the current piece in the wanted direction and will check for line completion.
+     * @param direction Direction to move the current piece in (left, right or down).
+     * @throws CorruptedCell
+     */
     public void nextCycle(Direction direction) throws CorruptedCell {
         if (status != GameStatus.ONGOING) {
             return;
