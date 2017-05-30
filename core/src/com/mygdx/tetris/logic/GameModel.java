@@ -178,4 +178,8 @@ public class GameModel {
         }
         return false;
     }
+
+    public GameStatus getStatus() {
+        return status;
+    }
 }

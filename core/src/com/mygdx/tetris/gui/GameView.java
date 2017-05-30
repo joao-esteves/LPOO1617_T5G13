@@ -12,17 +12,20 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.mygdx.tetris.TetrisGame;
 import com.mygdx.tetris.logic.CorruptedCell;
 import com.mygdx.tetris.logic.Direction;
 import com.mygdx.tetris.logic.GameModel;
 
+import static com.mygdx.tetris.logic.GameStatus.ONGOING;
 import static java.lang.Math.min;
 
 /**
@@ -59,6 +62,8 @@ public class GameView implements Screen {
 
     private Label scoreLabel;
     private Label scoreValue;
+
+    private Dialog endGamePopup;
 
     private BitmapFont font;
     private Skin buttonSkin;
@@ -98,8 +103,25 @@ public class GameView implements Screen {
         setupButtons();
         setupMovementInput();
         setupScore();
+        setupEndGamePopup();
 
         stage.addActor(table);
+    }
+
+    private void setupEndGamePopup() {
+        Window.WindowStyle popupStyle = new Window.WindowStyle();
+        popupStyle.titleFont = font;
+        popupStyle.titleFontColor = new Color(0, 0, 0, 1);
+        Skin popupSkin = new Skin(atlas);
+        popupSkin.add("popup_style", popupStyle);
+        endGamePopup = new Dialog("End Game", popupSkin, "popup_style") {
+            @Override
+            public void result(Object obj) {
+
+            }
+        };
+        endGamePopup.button("Restart", PopupOptions.RESTART, buttonStyle);
+        endGamePopup.button("Share to FB", PopupOptions.FB_SHARE, buttonStyle);
     }
 
     private void setupScore() {
@@ -222,11 +244,14 @@ public class GameView implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.setProjectionMatrix(camera.combined);
-
+        drawGame();
         stage.act(delta);
+        if (model.getStatus() != ONGOING && endGamePopup.getStage() == null) {
+            endGamePopup.show(stage);
+        }
         stage.draw();
 
-        drawGame();
+
     }
 
     private void updateLogic(float delta) {
