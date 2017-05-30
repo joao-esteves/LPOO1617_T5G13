@@ -113,4 +113,12 @@ public class GameMap {
         }
         return isOccupied(block.getCoords().x, block.getCoords().y - 1);
     }
+
+    public void clearMap() {
+        for (int column = 0; column < map.length; column++) {
+            for (int line = 0; line < map[column].length; line++) {
+                map[column][line] = '\0';
+            }
+        }
+    }
 }

@@ -109,15 +109,18 @@ public class GameModel {
         map.drawPiece(currentPiece);
     }
 
-//    public void dropFloatingBlocks() {
-//        for (Block block : blocks) {
-//            if (!map.blockHasFloor(block)) {
-//                map.clearCell(block.getCoords());
-//                block.moveDown();
-//                map.drawCell(block.getCoords(), block.getSymbol());
-//            }
-//        }
-//    }
+    public GameStatus getStatus() {
+        return status;
+    }
+
+    public void restart() {
+        blocks.clear();
+        map.clearMap();
+        completedLines = 0;
+        currentPiece = pieceFactory.makePiece(map);
+        map.drawPiece(currentPiece);
+        status = GameStatus.ONGOING;
+    }
 
     private void checkLineCompletion(List<Block> blocks) {
         ArrayList<Integer> linesToRemove = new ArrayList<Integer>();
@@ -177,9 +180,5 @@ public class GameModel {
             }
         }
         return false;
-    }
-
-    public GameStatus getStatus() {
-        return status;
     }
 }

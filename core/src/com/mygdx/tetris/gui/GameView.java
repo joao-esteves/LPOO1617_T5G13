@@ -117,7 +117,14 @@ public class GameView implements Screen {
         endGamePopup = new Dialog("End Game", popupSkin, "popup_style") {
             @Override
             public void result(Object obj) {
-
+                PopupOptions option = (PopupOptions) obj;
+                switch (option) {
+                    case RESTART:
+                        model.restart();
+                        break;
+                    case FB_SHARE:
+                        break;
+                }
             }
         };
         endGamePopup.button("Restart", PopupOptions.RESTART, buttonStyle);
