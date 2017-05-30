@@ -54,10 +54,17 @@ public class Block implements Comparable {
     // Ordered vertically for priority queue.
     @Override
     public int compareTo(Object o) {
-        if (this.getCoords().y > ((Block) o).getCoords().y) {
+        Block otherBlock = (Block) o;
+        if (this.getCoords().y > otherBlock.getCoords().y) {
             return 1;
-        } else if (this.getCoords().y == ((Block) o).getCoords().y) {
-            return 0;
+        } else if (this.getCoords().y == otherBlock.getCoords().y) {
+            if (this.getCoords().x > otherBlock.getCoords().x) {
+                return 1;
+            } else if (this.getCoords().x == otherBlock.getCoords().x) {
+                return 0;
+            } else {
+                return -1;
+            }
         } else {
             return -1;
         }

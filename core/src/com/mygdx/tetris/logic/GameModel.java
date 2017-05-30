@@ -144,9 +144,11 @@ public class GameModel {
             if (block.getCoords().y < line) {
                 continue;
             }
+            map.clearCell(block.getCoords());
             for (int i = 0; i < dropLength; i++) {
                 block.moveDown();
             }
+            map.drawCell(block.getCoords(), block.getSymbol());
         }
     }
 
