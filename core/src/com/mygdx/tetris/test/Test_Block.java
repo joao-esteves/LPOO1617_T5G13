@@ -44,7 +44,7 @@ public class Test_Block {
     public void compare() {
         Block lowerBlock = new Block(0, 0, 'A');
         Block higherBlock = new Block(0, 1, 'B');
-        Block anotherHigherBlock = new Block(1, 1, 'D');
+        Block anotherHigherBlock = new Block(0, 1, 'D');
 
         assertEquals(1, higherBlock.compareTo(lowerBlock));
         assertEquals(0, higherBlock.compareTo(anotherHigherBlock));

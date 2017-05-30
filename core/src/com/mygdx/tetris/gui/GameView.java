@@ -123,6 +123,7 @@ public class GameView implements Screen {
                         model.restart();
                         break;
                     case FB_SHARE:
+
                         break;
                 }
             }
