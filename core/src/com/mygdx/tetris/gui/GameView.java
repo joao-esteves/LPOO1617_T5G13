@@ -18,7 +18,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.tetris.TetrisGame;
 import com.mygdx.tetris.logic.CorruptedCell;
 import com.mygdx.tetris.logic.Direction;
@@ -59,7 +58,7 @@ public class GameView implements Screen {
     private TextButton rightButton;
 
     private Label scoreLabel;
-    private TextField scoreField;
+    private Label scoreValue;
 
     private BitmapFont font;
     private Skin buttonSkin;
@@ -105,16 +104,14 @@ public class GameView implements Screen {
 
     private void setupScore() {
         Label.LabelStyle scoreLabelStyle = new Label.LabelStyle();
-        TextField.TextFieldStyle scoreFieldStyle = new TextField.TextFieldStyle();
         scoreLabelStyle.font = font;
-        scoreFieldStyle.font = font;
-        scoreFieldStyle.fontColor = new Color(0, 0, 0, 1);
+        scoreLabelStyle.fontColor = new Color(0, 0, 0, 1);
         scoreLabel = new Label("Score: ", scoreLabelStyle);
-        scoreField = new TextField("" + score, scoreFieldStyle);
+        scoreValue = new Label("" + score, scoreLabelStyle);
 
         table.row();
         table.add(scoreLabel);
-        table.add(scoreField);
+        table.add(scoreValue);
     }
 
     private void setupButtons() {
@@ -245,6 +242,7 @@ public class GameView implements Screen {
             if (accumulatedDelta >= 1) {
                 model.nextCycle(Direction.DOWN);
                 score = model.getCompletedLines();
+                scoreValue.setText("" + score);
                 accumulatedDelta = 0;
             }
         } catch (CorruptedCell corruptedCell) {
