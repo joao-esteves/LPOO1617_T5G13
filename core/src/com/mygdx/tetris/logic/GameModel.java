@@ -14,7 +14,6 @@ import java.util.TreeSet;
 
 public class GameModel {
 
-    private static ArrayList<GameModel> instances;
     private GridPoint2 spawnPos;
     private PieceFactory pieceFactory;
     private GameMap map;
@@ -67,22 +66,6 @@ public class GameModel {
         status = GameStatus.ONGOING;
         completedLines = 0;
     }
-
-//    public static GameModel getInstance(int columns, int lines) {
-//        if (instances == null) {
-//            instances = new ArrayList<GameModel>();
-//        }
-//
-//        for (GameModel instance : instances) {
-//            if (instance.getMap().getCols() == columns && instance.getMap().getLines() == lines) {
-//                return instance;
-//            }
-//        }
-//
-//        GameModel newInstance = new GameModel(columns, lines);
-//        instances.add(newInstance);
-//        return newInstance;
-//    }
 
     /**
      * Advances the game's flow.
