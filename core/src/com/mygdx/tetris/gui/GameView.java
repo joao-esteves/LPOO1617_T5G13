@@ -145,22 +145,6 @@ public class GameView implements Screen {
        // showFbLoginUrl(loginDialogUrlString);
     }
 
-    private void showFbLoginUrl(String loginDialogUrl) {
-        Window.WindowStyle popupStyle = new Window.WindowStyle();
-        popupStyle.titleFont = font;
-        popupStyle.titleFontColor = new Color(0, 0, 0, 1);
-        Skin popupSkin = new Skin(atlas);
-        popupSkin.add("popup_style", popupStyle);
-
-        Dialog loginUrlDialog = new Dialog("FB Login URL", popupSkin, "popup_style") {
-            @Override
-            public void result(Object obj) {
-
-            }
-        };
-
-    }
-
     private void setupScore() {
         Label.LabelStyle scoreLabelStyle = new Label.LabelStyle();
         scoreLabelStyle.font = font;
