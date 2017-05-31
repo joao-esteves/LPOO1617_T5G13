@@ -24,6 +24,11 @@ import com.mygdx.tetris.TetrisGame;
 import com.mygdx.tetris.logic.CorruptedCell;
 import com.mygdx.tetris.logic.Direction;
 import com.mygdx.tetris.logic.GameModel;
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.Version;
+import com.restfb.scope.ScopeBuilder;
+
 
 import static com.mygdx.tetris.logic.GameStatus.ONGOING;
 import static java.lang.Math.min;
@@ -123,13 +128,37 @@ public class GameView implements Screen {
                         model.restart();
                         break;
                     case FB_SHARE:
-
+                        fbShare();
                         break;
                 }
             }
         };
         endGamePopup.button("Restart", PopupOptions.RESTART, buttonStyle);
         endGamePopup.button("Share to FB", PopupOptions.FB_SHARE, buttonStyle);
+    }
+
+    private void fbShare() {
+        ScopeBuilder scopeBuilder = new ScopeBuilder();
+        FacebookClient client = new DefaultFacebookClient(Version.VERSION_2_9);
+        String loginDialogUrl = client.getLoginDialogUrl(game.getFbAppId(), game.getFbRedirectUri(), scopeBuilder);
+        Gdx.net.openURI(loginDialogUrl);
+       // showFbLoginUrl(loginDialogUrlString);
+    }
+
+    private void showFbLoginUrl(String loginDialogUrl) {
+        Window.WindowStyle popupStyle = new Window.WindowStyle();
+        popupStyle.titleFont = font;
+        popupStyle.titleFontColor = new Color(0, 0, 0, 1);
+        Skin popupSkin = new Skin(atlas);
+        popupSkin.add("popup_style", popupStyle);
+
+        Dialog loginUrlDialog = new Dialog("FB Login URL", popupSkin, "popup_style") {
+            @Override
+            public void result(Object obj) {
+
+            }
+        };
+
     }
 
     private void setupScore() {

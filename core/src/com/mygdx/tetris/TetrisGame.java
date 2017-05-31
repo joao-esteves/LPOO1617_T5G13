@@ -16,6 +16,9 @@ public class TetrisGame extends Game {
 	}
 
 	private int columns = 10, lines = 20;
+	private final String fbAppId = "1333570703393561";
+	private final String fbRedirectUri = "https://www.facebook.com/connect/login_success.html";
+	private final String fbAppSecret = "a86d5fd7a1503aefc9656dc204ec60f2";
 
 	@Override
 	public void create () {
@@ -25,6 +28,18 @@ public class TetrisGame extends Game {
 	public void setBoardScreen() {
 		GameModel model = new GameModel(columns, lines);
 		this.setScreen(GameView.getInstance(this, model));
+	}
+
+	public String getFbAppId() {
+		return fbAppId;
+	}
+
+	public String getFbRedirectUri() {
+		return fbRedirectUri;
+	}
+
+	public String getFbAppSecret() {
+		return fbAppSecret;
 	}
 
 	/*
