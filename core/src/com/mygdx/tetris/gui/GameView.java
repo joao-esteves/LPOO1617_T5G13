@@ -21,13 +21,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.mygdx.tetris.TetrisGame;
+import com.mygdx.tetris.facebook.FB;
 import com.mygdx.tetris.logic.CorruptedCell;
 import com.mygdx.tetris.logic.Direction;
 import com.mygdx.tetris.logic.GameModel;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
+import com.restfb.Parameter;
 import com.restfb.Version;
 import com.restfb.scope.ScopeBuilder;
+import com.restfb.types.FacebookType;
 
 
 import static com.mygdx.tetris.logic.GameStatus.ONGOING;
@@ -128,21 +131,13 @@ public class GameView implements Screen {
                         model.restart();
                         break;
                     case FB_SHARE:
-                        fbShare();
+                        game.shareScore(score);
                         break;
                 }
             }
         };
         endGamePopup.button("Restart", PopupOptions.RESTART, buttonStyle);
         endGamePopup.button("Share to FB", PopupOptions.FB_SHARE, buttonStyle);
-    }
-
-    private void fbShare() {
-        ScopeBuilder scopeBuilder = new ScopeBuilder();
-        FacebookClient client = new DefaultFacebookClient(Version.VERSION_2_9);
-        String loginDialogUrl = client.getLoginDialogUrl(game.getFbAppId(), game.getFbRedirectUri(), scopeBuilder);
-        Gdx.net.openURI(loginDialogUrl);
-       // showFbLoginUrl(loginDialogUrlString);
     }
 
     private void setupScore() {

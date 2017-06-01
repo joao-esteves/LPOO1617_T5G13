@@ -1,6 +1,7 @@
 package com.mygdx.tetris;
 
 import com.badlogic.gdx.Game;
+import com.mygdx.tetris.facebook.FB;
 import com.mygdx.tetris.gui.GameView;
 import com.mygdx.tetris.gui.MainMenu;
 import com.mygdx.tetris.logic.GameModel;
@@ -19,9 +20,11 @@ public class TetrisGame extends Game {
 	private final String fbAppId = "1333570703393561";
 	private final String fbRedirectUri = "https://www.facebook.com/connect/login_success.html";
 	private final String fbAppSecret = "a86d5fd7a1503aefc9656dc204ec60f2";
+	private FB facebook;
 
 	@Override
 	public void create () {
+		facebook = new FB();
 		this.setScreen(MainMenu.getInstance(this));
 	}
 
@@ -40,6 +43,11 @@ public class TetrisGame extends Game {
 
 	public String getFbAppSecret() {
 		return fbAppSecret;
+	}
+
+	public void shareScore(int score) {
+		facebook.login();
+		facebook.shareScore(score);
 	}
 
 	/*
