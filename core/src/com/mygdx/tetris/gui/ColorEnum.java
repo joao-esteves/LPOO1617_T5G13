@@ -11,7 +11,8 @@ public enum ColorEnum {
     GREEN (2, "green_block", 'S'),
     YELLOW (3, "yellow_block", 'O'),
     ORANGE (4, "orange_block", 'L'),
-    RED (5, "red_block", 'Z');
+    RED (5, "red_block", 'Z'),
+    PURPLE (6, "purple_block", 'T');
 
     public int val;
     public String imgName;

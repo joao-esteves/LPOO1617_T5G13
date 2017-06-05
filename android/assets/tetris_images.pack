@@ -3,42 +3,42 @@ tetris_images.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-blue_block
+red_block
   rotate: false
   xy: 1, 435
   size: 420, 420
   orig: 420, 420
   offset: 0, 0
   index: -1
-cyan_block
+blue_block
   rotate: false
   xy: 1, 13
   size: 420, 420
   orig: 420, 420
   offset: 0, 0
   index: -1
-green_block
+cyan_block
   rotate: false
   xy: 423, 435
   size: 420, 420
   orig: 420, 420
   offset: 0, 0
   index: -1
-orange_block
+green_block
   rotate: false
   xy: 423, 13
   size: 420, 420
   orig: 420, 420
   offset: 0, 0
   index: -1
-greyButton
+greyDarkButton
   rotate: false
   xy: 1, 1
   size: 40, 10
   orig: 40, 10
   offset: 0, 0
   index: -1
-greyDarkButton
+greyButton
   rotate: false
   xy: 845, 845
   size: 40, 10
@@ -50,16 +50,23 @@ tetris_images2.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-red_block
+orange_block
   rotate: false
-  xy: 1, 1
+  xy: 1, 423
   size: 420, 420
   orig: 420, 420
   offset: 0, 0
   index: -1
 yellow_block
   rotate: false
-  xy: 423, 1
+  xy: 1, 1
+  size: 420, 420
+  orig: 420, 420
+  offset: 0, 0
+  index: -1
+purple_block
+  rotate: false
+  xy: 423, 423
   size: 420, 420
   orig: 420, 420
   offset: 0, 0

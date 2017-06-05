@@ -17,7 +17,7 @@ public class PieceFactory {
 
     public PieceFactory(GridPoint2 spawnPos) {
         this.spawnPos = spawnPos;
-        pieces = Arrays.asList(new StraightPiece(spawnPos), new SquarePiece(spawnPos));
+        pieces = Arrays.asList(new StraightPiece(spawnPos), new SquarePiece(spawnPos), new TPiece(spawnPos));
         random = new Random();
     }
 
