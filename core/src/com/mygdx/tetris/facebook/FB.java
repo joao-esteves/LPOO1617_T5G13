@@ -29,11 +29,9 @@ public class FB {
     public void login() {
         ScopeBuilder scopeBuilder = new ScopeBuilder();
         if (facebookClient == null) {
-            AccessToken appAccessToken = new DefaultFacebookClient(Version.VERSION_2_9).obtainAppAccessToken(appId, appSecret);
+        //    AccessToken appAccessToken = new DefaultFacebookClient(Version.VERSION_2_9).obtainAppAccessToken(appId, appSecret);
 //            AccessToken userAccessToken = new DefaultFacebookClient(Version.VERSION_2_9).obtainUserAccessToken(appId, appSecret, redirectUri, );
-//            AccessToken extendedAccessToken = new DefaultFacebookClient(Version.VERSION_2_9).obtainExtendedAccessToken(appId, appSecret, userAccessToken.getAccessToken());
-            facebookClient = new DefaultFacebookClient(appAccessToken.getAccessToken(), Version.VERSION_2_9);
-        //    facebookClient = new DefaultFacebookClient("EAAS84CAPAxkBAMMFgCZAbYITkQJduXd9nCXTPotraaZA1tM6LgDzVeaAxv8Er1HoKRwtlyqP89p4OBwl11el52cEfrSf8Uv2rzgloAQhSeZBc2duvwTwZAo2mbmfUNWyVpxkkh3WT4MnBcibKkL0NlQ0032sL7SENuTd1778hAZDZD", Version.VERSION_2_9);
+            facebookClient = new DefaultFacebookClient(Version.VERSION_2_9);
         }
 
         String loginDialogUrl = facebookClient.getLoginDialogUrl(appId, redirectUri, scopeBuilder);

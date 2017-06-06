@@ -15,6 +15,10 @@ public class PieceFactory {
     private final Random random;
     private GridPoint2 spawnPos;
 
+    /**
+     * Initializes the Piece factory.
+     * @param spawnPos Position where the pieces will spawn.
+     */
     public PieceFactory(GridPoint2 spawnPos) {
         this.spawnPos = spawnPos;
         pieces = Arrays.asList(new StraightPiece(spawnPos), new SquarePiece(spawnPos), new TPiece(spawnPos),
@@ -22,6 +26,11 @@ public class PieceFactory {
         random = new Random();
     }
 
+    /**
+     * Returns a Piece at the spawn position. Pieces are reused.
+     * @param map GameMap being used.
+     * @return New Piece.
+     */
     public Piece makePiece(GameMap map) {
         Piece piece = pieces.get(random.nextInt(pieces.size()));
         piece.setPos(spawnPos);

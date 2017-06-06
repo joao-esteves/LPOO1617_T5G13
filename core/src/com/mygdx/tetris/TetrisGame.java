@@ -47,7 +47,7 @@ public class TetrisGame extends Game {
 
 	public void shareScore(int score) {
 		facebook.login();
-		facebook.shareScore(score);
+	//	facebook.shareScore(score);
 	}
 
 	/*

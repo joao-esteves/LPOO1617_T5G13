@@ -77,6 +77,8 @@ public class GameView implements Screen {
     private Skin buttonSkin;
     private TextureAtlas atlas;
 
+    private AccelManager accelManager;
+
     private GameView(TetrisGame tetrisGame, GameModel model) {
         this.game = tetrisGame;
         this.model = model;
@@ -112,6 +114,8 @@ public class GameView implements Screen {
         setupMovementInput();
         setupScore();
         setupEndGamePopup();
+
+        accelManager = new AccelManager();
 
         stage.addActor(table);
     }
@@ -266,20 +270,15 @@ public class GameView implements Screen {
             endGamePopup.show(stage);
         }
         stage.draw();
-
-
     }
 
     private void updateLogic(float delta) {
         accumulatedDelta += delta;
-        /*if (downButton.isPressed()) {
-            try {
-                model.nextCycle(Direction.DOWN);
-            } catch (CorruptedCell corruptedCell) {
-                corruptedCell.printStackTrace();
-            }
-        }*/
+
         try {
+            if (accelManager.shook(delta)) {
+                model.nextCycle(Direction.DOWN);
+            }
             if (accumulatedDelta >= 1) {
                 model.nextCycle(Direction.DOWN);
                 score = model.getCompletedLines();
