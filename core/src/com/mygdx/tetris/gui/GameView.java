@@ -279,6 +279,13 @@ public class GameView implements Screen {
             if (accelManager.shook(delta)) {
                 model.nextCycle(Direction.DOWN);
             }
+
+            if (accelManager.tiltedLeft(delta)) {
+                model.nextCycle(Direction.ROT_ANTICLOCKWISE);
+            } else if (accelManager.tiltedRight(delta)) {
+                model.nextCycle(Direction.ROT_CLOCKWISE);
+            }
+
             if (accumulatedDelta >= 1) {
                 model.nextCycle(Direction.DOWN);
                 score = model.getCompletedLines();
