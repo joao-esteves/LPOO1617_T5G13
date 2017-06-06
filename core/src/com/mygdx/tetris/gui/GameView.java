@@ -177,8 +177,8 @@ public class GameView implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 try {
-                    model.nextCycle(Direction.LEFT);
-                    //model.nextCycle(Direction.ROT_ANTICLOCKWISE);
+                    //model.nextCycle(Direction.LEFT);
+                    model.nextCycle(Direction.ROT_ANTICLOCKWISE);
                 } catch (CorruptedCell corruptedCell) {
                     corruptedCell.printStackTrace();
                 }

@@ -59,30 +59,30 @@ public class TPiece extends Piece {
     }
 
     private void setDownOrientation(GridPoint2 axis) {
-        blocks.get(0).getCoords().set(axis.x, axis.y-1);
-        blocks.get(1).getCoords().set(axis.x+1, axis.y);
-        blocks.get(3).getCoords().set(axis.x-1, axis.y);
+        blocks.get(0).setCoords(axis.x, axis.y-1);
+        blocks.get(1).setCoords(axis.x+1, axis.y);
+        blocks.get(3).setCoords(axis.x-1, axis.y);
         orientation = DOWN;
     }
 
     private void setUpOrientation(GridPoint2 axis) {
-        blocks.get(0).getCoords().set(axis.x+1, axis.y);
-        blocks.get(1).getCoords().set(axis.x-1, axis.y);
-        blocks.get(3).getCoords().set(axis.x+1, axis.y);
+        blocks.get(0).setCoords(axis.x+1, axis.y);
+        blocks.get(1).setCoords(axis.x-1, axis.y);
+        blocks.get(3).setCoords(axis.x+1, axis.y);
         orientation = UP;
     }
 
     private void setLeftOrientation(GridPoint2 axis) {
-        blocks.get(0).getCoords().set(axis.x-1, axis.y);
-        blocks.get(1).getCoords().set(axis.x, axis.y-1);
-        blocks.get(3).getCoords().set(axis.x, axis.y+1);
+        blocks.get(0).setCoords(axis.x-1, axis.y);
+        blocks.get(1).setCoords(axis.x, axis.y-1);
+        blocks.get(3).setCoords(axis.x, axis.y+1);
         orientation = LEFT;
     }
 
     private void setRightOrientation(GridPoint2 axis) {
-        blocks.get(0).getCoords().set(axis.x+1, axis.y);
-        blocks.get(1).getCoords().set(axis.x, axis.y+1);
-        blocks.get(3).getCoords().set(axis.x, axis.y-1);
+        blocks.get(0).setCoords(axis.x+1, axis.y);
+        blocks.get(1).setCoords(axis.x, axis.y+1);
+        blocks.get(3).setCoords(axis.x, axis.y-1);
         orientation = RIGHT;
     }
 
