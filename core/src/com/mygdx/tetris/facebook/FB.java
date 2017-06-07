@@ -10,6 +10,7 @@ import com.restfb.WebRequestor;
 import com.restfb.scope.ScopeBuilder;
 import com.restfb.types.FacebookType;
 import com.restfb.FacebookClient.AccessToken;
+import com.restfb.types.User;
 
 import java.io.IOException;
 
@@ -25,29 +26,24 @@ public class FB {
     private String redirectUri = "https://www.facebook.com/connect/login_success.html";
 
     private FacebookClient facebookClient;
+    private ScopeBuilder scopeBuilder;
+
+    public FB() {
+        scopeBuilder = new ScopeBuilder();
+        facebookClient = new DefaultFacebookClient(Version.VERSION_2_9);
+    }
 
     public void login() {
-        ScopeBuilder scopeBuilder = new ScopeBuilder();
-        if (facebookClient == null) {
-        //    AccessToken appAccessToken = new DefaultFacebookClient(Version.VERSION_2_9).obtainAppAccessToken(appId, appSecret);
-//            AccessToken userAccessToken = new DefaultFacebookClient(Version.VERSION_2_9).obtainUserAccessToken(appId, appSecret, redirectUri, );
-            facebookClient = new DefaultFacebookClient(Version.VERSION_2_9);
-        }
-
         String loginDialogUrl = facebookClient.getLoginDialogUrl(appId, redirectUri, scopeBuilder);
-//        WebRequestor wr = new DefaultWebRequestor();
-//        WebRequestor.Response loginResponse;
-//        try {
-//            loginResponse = wr.executeGet(loginDialogUrl);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         Gdx.net.openURI(loginDialogUrl);
-
     }
 
-    public void shareScore(int score) {
-
-        FacebookType publishMessageResponse = facebookClient.publish("me/feed", FacebookType.class, Parameter.with("message", "RestFB test"), Parameter.with("link", "http://www.google.com"));
+    public String getName() {
+        User me = facebookClient.fetchObject("me", User.class, Parameter.with("fields", "first_name,last_name"));
+        return me.getName();
     }
+
+//    public void shareScore(int score) {
+//        FacebookType publishMessageResponse = facebookClient.publish("me/feed", FacebookType.class, Parameter.with("message", "RestFB test"), Parameter.with("link", "http://www.google.com"));
+//    }
 }

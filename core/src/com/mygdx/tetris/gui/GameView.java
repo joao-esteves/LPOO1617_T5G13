@@ -70,6 +70,7 @@ public class GameView implements Screen {
 
     private Label scoreLabel;
     private Label scoreValue;
+    private Label fbName;
 
     private Dialog endGamePopup;
 
@@ -113,11 +114,16 @@ public class GameView implements Screen {
         setupButtons();
         setupMovementInput();
         setupScore();
+        setupName();
         setupEndGamePopup();
 
         accelManager = new AccelManager();
 
         stage.addActor(table);
+    }
+
+    private void setupName() {
+
     }
 
     private void setupEndGamePopup() {
@@ -134,14 +140,14 @@ public class GameView implements Screen {
                     case RESTART:
                         model.restart();
                         break;
-                    case FB_SHARE:
-                        game.shareScore(score);
-                        break;
+//                    case FB_SHARE:
+//                        game.shareScore(score);
+//                        break;
                 }
             }
         };
         endGamePopup.button("Restart", PopupOptions.RESTART, buttonStyle);
-        endGamePopup.button("Share to FB", PopupOptions.FB_SHARE, buttonStyle);
+//        endGamePopup.button("Share to FB", PopupOptions.FB_SHARE, buttonStyle);
     }
 
     private void setupScore() {
