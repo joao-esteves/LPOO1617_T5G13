@@ -5,44 +5,51 @@ filter: Nearest,Nearest
 repeat: none
 red_block
   rotate: false
-  xy: 1, 435
+  xy: 1, 438
   size: 420, 420
   orig: 420, 420
   offset: 0, 0
   index: -1
 blue_block
   rotate: false
-  xy: 1, 13
+  xy: 1, 16
   size: 420, 420
   orig: 420, 420
   offset: 0, 0
   index: -1
 cyan_block
   rotate: false
-  xy: 423, 435
+  xy: 423, 438
   size: 420, 420
   orig: 420, 420
   offset: 0, 0
   index: -1
 green_block
   rotate: false
-  xy: 423, 13
+  xy: 423, 16
   size: 420, 420
   orig: 420, 420
   offset: 0, 0
   index: -1
 greyDarkButton
   rotate: false
-  xy: 1, 1
+  xy: 1, 4
   size: 40, 10
   orig: 40, 10
   offset: 0, 0
   index: -1
 greyButton
   rotate: false
-  xy: 845, 845
+  xy: 845, 848
   size: 40, 10
   orig: 40, 10
+  offset: 0, 0
+  index: -1
+Transparent
+  rotate: false
+  xy: 1, 1
+  size: 1, 1
+  orig: 1, 1
   offset: 0, 0
   index: -1
 

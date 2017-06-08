@@ -92,10 +92,18 @@ public class GameModel {
         map.drawPiece(currentPiece);
     }
 
+    /**
+     * Returns the current game status.
+     * @return Status indicating if the game is in progress or ended.
+     */
     public GameStatus getStatus() {
         return status;
     }
 
+    /**
+     * Restarts the game.
+     * Resets score to 0, eliminates blocks and map contents and initializes and draws a new piece.
+     */
     public void restart() {
         blocks.clear();
         map.clearMap();

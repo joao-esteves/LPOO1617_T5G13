@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -132,14 +133,10 @@ public class GameView implements Screen {
                     case RESTART:
                         model.restart();
                         break;
-//                    case FB_SHARE:
-//                        game.shareScore(score);
-//                        break;
                 }
             }
         };
         endGamePopup.button("Restart", PopupOptions.RESTART, buttonStyle);
-//        endGamePopup.button("Share to FB", PopupOptions.FB_SHARE, buttonStyle);
     }
 
     private void setupScore() {
@@ -164,8 +161,40 @@ public class GameView implements Screen {
         setupMovementButtons();
     }
 
-    // TODO: Keyboard and possibly gyroscope
+    // TODO: Keyboard
     private void setupMovementInput() {
+        Button.ButtonStyle transparentStyle = new Button.ButtonStyle();
+        transparentStyle.up = buttonSkin.getDrawable("Transparent");
+        transparentStyle.down = buttonSkin.getDrawable("Transparent");
+
+        Button leftButton = new Button(transparentStyle);
+        Button rightButton = new Button(transparentStyle);
+
+        leftButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                try {
+                    model.nextCycle(Direction.LEFT);
+                } catch (CorruptedCell corruptedCell) {
+                    corruptedCell.printStackTrace();
+                }
+            }
+        });
+        rightButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                try {
+                    model.nextCycle(Direction.RIGHT);
+                } catch (CorruptedCell corruptedCell) {
+                    corruptedCell.printStackTrace();
+                }
+            }
+        });
+
+        float screenWidth = Gdx.graphics.getWidth();
+        float screenHeight = Gdx.graphics.getHeight();
+        table.add(leftButton).expand().bottom().left();
+        table.add(rightButton).expand().bottom().right();
     }
 
     private void setupMovementButtons() {
@@ -208,8 +237,7 @@ public class GameView implements Screen {
             }
         });
 
-        table.top();
-        table.add(leftButton).width(150).height(100);
+        table.add(leftButton).top().width(150).height(100);
         table.add(downButton).width(150).height(100);
         table.add(rightButton).width(150).height(100);
     }
