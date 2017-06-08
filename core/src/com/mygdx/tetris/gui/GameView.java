@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
@@ -62,8 +63,6 @@ public class GameView implements Screen {
     private TextButton rightButton;
 
     private Label scoreLabel;
-    private Label scoreValue;
-    private Label fbName;
 
     private Dialog endGamePopup;
 
@@ -105,18 +104,13 @@ public class GameView implements Screen {
 
         setupCamera();
         setupButtons();
-        setupMovementInput();
         setupScore();
-        setupName();
+        setupMovementInput();
         setupEndGamePopup();
 
         accelManager = new AccelManager();
 
         stage.addActor(table);
-    }
-
-    private void setupName() {
-
     }
 
     private void setupEndGamePopup() {
@@ -143,12 +137,10 @@ public class GameView implements Screen {
         Label.LabelStyle scoreLabelStyle = new Label.LabelStyle();
         scoreLabelStyle.font = font;
         scoreLabelStyle.fontColor = new Color(0, 0, 0, 1);
-        scoreLabel = new Label("Score: ", scoreLabelStyle);
-        scoreValue = new Label("" + score, scoreLabelStyle);
+        scoreLabel = new Label("Score: " + score, scoreLabelStyle);
 
+        table.add(scoreLabel).left();
         table.row();
-        table.add(scoreLabel);
-        table.add(scoreValue);
     }
 
     private void setupButtons() {
@@ -158,14 +150,14 @@ public class GameView implements Screen {
         buttonStyle.font = font;
 
         setupMenuButton();
-        setupMovementButtons();
+        //setupMovementButtons();
     }
 
     // TODO: Keyboard
     private void setupMovementInput() {
         Button.ButtonStyle transparentStyle = new Button.ButtonStyle();
-        transparentStyle.up = buttonSkin.getDrawable("Transparent");
-        transparentStyle.down = buttonSkin.getDrawable("Transparent");
+        transparentStyle.up = buttonSkin.getDrawable("greyButton");
+        transparentStyle.down = buttonSkin.getDrawable("greyDarkButton");
 
         Button leftButton = new Button(transparentStyle);
         Button rightButton = new Button(transparentStyle);
@@ -193,8 +185,8 @@ public class GameView implements Screen {
 
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();
-        table.add(leftButton).expand().bottom().left();
-        table.add(rightButton).expand().bottom().right();
+        table.add(leftButton).expand().bottom().left().width(screenWidth/2).height(screenHeight/2);
+        table.add(rightButton).expand().bottom().right().width(screenWidth/2).height(screenHeight/2);
     }
 
     private void setupMovementButtons() {
@@ -237,9 +229,9 @@ public class GameView implements Screen {
             }
         });
 
-        table.add(leftButton).top().width(150).height(100);
-        table.add(downButton).width(150).height(100);
-        table.add(rightButton).width(150).height(100);
+//        table.add(leftButton).top().width(150).height(100);
+//        table.add(downButton).top().width(150).height(100);
+//        table.add(rightButton).top().width(150).height(100);
     }
 
     private void initSprites(Sprite[] sprites, TextureAtlas atlas) {
@@ -264,8 +256,8 @@ public class GameView implements Screen {
             }
         });
 
-        table.top();
-        table.add(menuButton).width(150).height(100);
+        table.add(menuButton).prefWidth(Gdx.graphics.getWidth()).height(100);
+        table.row();
     }
 
     public static GameView getInstance(TetrisGame game, GameModel model) {
@@ -313,7 +305,7 @@ public class GameView implements Screen {
             if (accumulatedDelta >= 1) {
                 model.nextCycle(Direction.DOWN);
                 score = model.getCompletedLines();
-                scoreValue.setText("" + score);
+                scoreLabel.setText("Score: " + score);
                 accumulatedDelta = 0;
             }
         } catch (CorruptedCell corruptedCell) {
