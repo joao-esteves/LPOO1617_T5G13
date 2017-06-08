@@ -18,13 +18,12 @@ public class AccelManager {
     Vector3 lastAccel = new Vector3();
     Vector3 currentAccel = new Vector3();
 
-    public boolean shook(float delta) {
+    public boolean shookZ(float delta) {
         accumulatedDelta += delta;
 
         if (accumulatedDelta >= 0.1) {
             currentAccel.set(Gdx.input.getAccelerometerX(), Gdx.input.getAccelerometerY(), Gdx.input.getAccelerometerZ());
-            float val = Math.abs(currentAccel.x + currentAccel.y + currentAccel.z - lastAccel.x - lastAccel.y - lastAccel.z)
-                    / accumulatedDelta;
+            float val = Math.abs(currentAccel.z - lastAccel.z) / accumulatedDelta;
 
             lastAccel.set(currentAccel);
             accumulatedDelta = 0;

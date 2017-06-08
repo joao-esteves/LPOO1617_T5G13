@@ -17,20 +17,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.mygdx.tetris.TetrisGame;
-import com.mygdx.tetris.facebook.FB;
 import com.mygdx.tetris.logic.CorruptedCell;
 import com.mygdx.tetris.logic.Direction;
 import com.mygdx.tetris.logic.GameModel;
-import com.restfb.DefaultFacebookClient;
-import com.restfb.FacebookClient;
-import com.restfb.Parameter;
-import com.restfb.Version;
-import com.restfb.scope.ScopeBuilder;
-import com.restfb.types.FacebookType;
 
 
 import static com.mygdx.tetris.logic.GameStatus.ONGOING;
@@ -183,8 +175,7 @@ public class GameView implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 try {
-                    //model.nextCycle(Direction.LEFT);
-                    model.nextCycle(Direction.ROT_ANTICLOCKWISE);
+                    model.nextCycle(Direction.LEFT);
                 } catch (CorruptedCell corruptedCell) {
                     corruptedCell.printStackTrace();
                 }
@@ -211,7 +202,6 @@ public class GameView implements Screen {
             public void changed(ChangeEvent event, Actor actor) {
                 try {
                     model.nextCycle(Direction.RIGHT);
-                    //model.nextCycle(Direction.ROT_CLOCKWISE);
                 } catch (CorruptedCell corruptedCell) {
                     corruptedCell.printStackTrace();
                 }
@@ -282,7 +272,7 @@ public class GameView implements Screen {
         accumulatedDelta += delta;
 
         try {
-            if (accelManager.shook(delta)) {
+            if (accelManager.shookZ(delta)) {
                 model.nextCycle(Direction.DOWN);
             }
 
