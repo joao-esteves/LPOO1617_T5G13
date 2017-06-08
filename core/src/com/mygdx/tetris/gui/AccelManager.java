@@ -40,13 +40,13 @@ public class AccelManager {
 
         if (tiltLeftDelta >= 0.2) {
             tiltLeftDelta = 0;
-            if (wasUpright) {
-                if (tiltingLeft()) {
+            if (tiltingLeft()) {
+                if (wasUpright) {
                     wasUpright = false;
                     return true;
-                } else {
-                    wasUpright = true;
                 }
+            } else {
+                wasUpright = true;
             }
         }
 
@@ -58,13 +58,13 @@ public class AccelManager {
 
         if (tiltRightDelta >= 0.2) {
             tiltRightDelta = 0;
-            if (wasUpright) {
-                if (tiltingRight()) {
+            if (tiltingRight()) {
+                if (wasUpright) {
                     wasUpright = false;
                     return true;
-                } else {
-                    wasUpright = true;
                 }
+            } else {
+                wasUpright = true;
             }
         }
 

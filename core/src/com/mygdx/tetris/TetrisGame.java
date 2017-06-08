@@ -24,8 +24,8 @@ public class TetrisGame extends Game {
 
 	@Override
 	public void create () {
-		facebook = new FB();
-		facebook.login();
+		//facebook = new FB();
+		//facebook.login();
 		this.setScreen(MainMenu.getInstance(this));
 	}
 
