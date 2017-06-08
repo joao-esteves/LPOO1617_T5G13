@@ -13,5 +13,4 @@ eclipse.project {
 dependencies {
     compile 'junit:junit:4.12'
     compile 'junit:junit:4.12'
-    compile files('src/com/mygdx/tetris/restfb-1.41.0.jar')
 }

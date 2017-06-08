@@ -2,19 +2,12 @@ package com.mygdx.tetris.facebook;
 
 import com.badlogic.gdx.Gdx;
 import com.restfb.DefaultFacebookClient;
-import com.restfb.DefaultWebRequestor;
 import com.restfb.FacebookClient;
 import com.restfb.Parameter;
 import com.restfb.Version;
-import com.restfb.WebRequestor;
 import com.restfb.scope.ScopeBuilder;
-import com.restfb.types.FacebookType;
-import com.restfb.FacebookClient.AccessToken;
 import com.restfb.types.User;
 
-import java.io.IOException;
-
-import static org.junit.Assert.assertNotEquals;
 
 /**
  * Created by joaof on 31/05/2017.
