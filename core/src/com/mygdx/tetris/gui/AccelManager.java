@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 public class AccelManager {
 
     private static final float SHAKE_TRESHOLD = 50f;
-    private static final double MIN_ANGLE = 15.0;
+    private static final double MIN_ANGLE = 25.0; //degrees
     private float accumulatedDelta = 0;
     private float tiltLeftDelta = 0;
     private float tiltRightDelta = 0;
