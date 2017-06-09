@@ -27,10 +27,18 @@ public abstract class Piece {
         return coords;
     }
 
+    /**
+     * Assigns a GameMap to the Piece. Used to check if movements are possible.
+     * @param map GameMap to assign.
+     */
     public void setMap(GameMap map) {
         this.map = map;
     }
 
+    /**
+     * Moves the Piece in one of the 4 directions or rotates it in one of the 2 ways.
+     * @param direction Wanted movement direction or rotation.
+     */
     public void move(Direction direction) {
         switch(direction) {
             case DOWN:
