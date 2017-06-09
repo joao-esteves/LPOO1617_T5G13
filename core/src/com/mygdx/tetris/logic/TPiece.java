@@ -21,44 +21,6 @@ public class TPiece extends Piece {
         axisBlockIndex = 2;
     }
 
-//    @Override
-//    protected void rotateClockwise() {
-//        GridPoint2 axis = blocks.get(2).getCoords();
-//        switch (orientation) {
-//            case UP:
-//                setRightOrientation(axis);
-//                break;
-//            case DOWN:
-//                setLeftOrientation(axis);
-//                break;
-//            case LEFT:
-//                setUpOrientation(axis);
-//                break;
-//            case RIGHT:
-//                setDownOrientation(axis);
-//                break;
-//        }
-//    }
-
-//    @Override
-//    protected void rotateAnticlockwise() {
-//        GridPoint2 axis = blocks.get(2).getCoords();
-//        switch (orientation) {
-//            case UP:
-//                setLeftOrientation(axis);
-//                break;
-//            case DOWN:
-//                setRightOrientation(axis);
-//                break;
-//            case LEFT:
-//                setDownOrientation(axis);
-//                break;
-//            case RIGHT:
-//                setUpOrientation(axis);
-//                break;
-//        }
-//    }
-
     @Override
     protected void setDownOrientation(GridPoint2 axis) {
         GridPoint2[] newCoords = new GridPoint2[3];
