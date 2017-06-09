@@ -14,16 +14,7 @@ public class StraightPiece extends Piece {
         symbol = 'I';
         blocks = Arrays.asList(new Block(pos.x, pos.y, symbol), new Block(pos.x, pos.y-1, symbol),
                             new Block(pos.x, pos.y-2, symbol), new Block(pos.x, pos.y-3, symbol));
-    }
-
-    @Override
-    protected void rotateClockwise() {
-        rotate();
-    }
-
-    @Override
-    protected void rotateAnticlockwise() {
-        rotate();
+        axisBlockIndex = 1;
     }
 
     private void rotate() {
@@ -41,7 +32,31 @@ public class StraightPiece extends Piece {
         }
     }
 
-    private void setUpOrientation(GridPoint2 axis) {
+    @Override
+    protected void setDownOrientation(GridPoint2 axis) {
+        setVerticalOrientation(axis);
+        orientation = Direction.DOWN;
+    }
+
+    @Override
+    protected void setUpOrientation(GridPoint2 axis) {
+        setVerticalOrientation(axis);
+        orientation = Direction.UP;
+    }
+
+    @Override
+    protected void setLeftOrientation(GridPoint2 axis) {
+        setHorizontalOrientation(axis);
+        orientation = Direction.LEFT;
+    }
+
+    @Override
+    protected void setRightOrientation(GridPoint2 axis) {
+        setHorizontalOrientation(axis);
+        orientation = Direction.RIGHT;
+    }
+
+    private void setVerticalOrientation(GridPoint2 axis) {
         GridPoint2[] newCoords = new GridPoint2[3];
         newCoords[0] = new GridPoint2(axis.x, axis.y + 1);
         newCoords[1] = new GridPoint2(axis.x, axis.y - 1);
@@ -51,13 +66,12 @@ public class StraightPiece extends Piece {
             return;
         }
 
-        orientation = Direction.UP;
         blocks.get(0).setCoords(newCoords[0]);
         blocks.get(2).setCoords(newCoords[1]);
         blocks.get(3).setCoords(newCoords[2]);
     }
 
-    private void setLeftOrientation(GridPoint2 axis) {
+    private void setHorizontalOrientation(GridPoint2 axis) {
         GridPoint2[] newCoords = new GridPoint2[3];
         newCoords[0] = new GridPoint2(axis.x - 1, axis.y);
         newCoords[1] = new GridPoint2(axis.x + 1, axis.y);
@@ -67,7 +81,6 @@ public class StraightPiece extends Piece {
             return;
         }
 
-        orientation = Direction.LEFT;
         blocks.get(0).setCoords(newCoords[0]);
         blocks.get(2).setCoords(newCoords[1]);
         blocks.get(3).setCoords(newCoords[2]);

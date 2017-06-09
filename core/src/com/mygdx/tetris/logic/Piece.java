@@ -10,6 +10,7 @@ import java.util.List;
  */
 public abstract class Piece {
     protected List<Block> blocks;
+    int axisBlockIndex;
     protected GameMap map;
     protected char symbol;
     protected Direction orientation;
@@ -46,9 +47,49 @@ public abstract class Piece {
         }
     }
 
-    protected abstract void rotateClockwise();
+    protected void rotateClockwise() {
+        GridPoint2 axis = blocks.get(axisBlockIndex).getCoords();
+        switch (orientation) {
+            case UP:
+                setRightOrientation(axis);
+                break;
+            case DOWN:
+                setLeftOrientation(axis);
+                break;
+            case LEFT:
+                setUpOrientation(axis);
+                break;
+            case RIGHT:
+                setDownOrientation(axis);
+                break;
+        }
+    }
 
-    protected abstract void rotateAnticlockwise();
+    protected abstract void setDownOrientation(GridPoint2 axis);
+
+    protected abstract void setUpOrientation(GridPoint2 axis);
+
+    protected abstract void setLeftOrientation(GridPoint2 axis);
+
+    protected abstract void setRightOrientation(GridPoint2 axis);
+
+    protected void rotateAnticlockwise() {
+        GridPoint2 axis = blocks.get(axisBlockIndex).getCoords();
+        switch (orientation) {
+            case UP:
+                setLeftOrientation(axis);
+                break;
+            case DOWN:
+                setRightOrientation(axis);
+                break;
+            case LEFT:
+                setDownOrientation(axis);
+                break;
+            case RIGHT:
+                setUpOrientation(axis);
+                break;
+        }
+    }
 
     private void moveDown() {
     for (Block block : blocks) {

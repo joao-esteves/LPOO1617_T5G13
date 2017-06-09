@@ -16,12 +16,22 @@ public class SPiece extends Piece {
     }
 
     @Override
-    protected void rotateClockwise() {
+    protected void setDownOrientation(GridPoint2 axis) {
 
     }
 
     @Override
-    protected void rotateAnticlockwise() {
+    protected void setUpOrientation(GridPoint2 axis) {
+
+    }
+
+    @Override
+    protected void setLeftOrientation(GridPoint2 axis) {
+
+    }
+
+    @Override
+    protected void setRightOrientation(GridPoint2 axis) {
 
     }
 

@@ -17,14 +17,23 @@ public class ZPiece extends Piece {
                             new Block(pos.x+1, pos.y-1, symbol), new Block(pos.x+2, pos.y-1, symbol));
     }
 
-
     @Override
-    protected void rotateClockwise() {
+    protected void setDownOrientation(GridPoint2 axis) {
 
     }
 
     @Override
-    protected void rotateAnticlockwise() {
+    protected void setUpOrientation(GridPoint2 axis) {
+
+    }
+
+    @Override
+    protected void setLeftOrientation(GridPoint2 axis) {
+
+    }
+
+    @Override
+    protected void setRightOrientation(GridPoint2 axis) {
 
     }
 
