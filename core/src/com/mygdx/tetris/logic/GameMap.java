@@ -124,7 +124,7 @@ public class GameMap {
 
     public boolean canDrawAt(GridPoint2[] coords) {
         for (GridPoint2 pos : coords){
-            if (isOutBounds(pos) || isOccupied(pos)) {
+            if (pos == null || isOutBounds(pos) || isOccupied(pos)) {
                 return false;
             }
         }

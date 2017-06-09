@@ -5,12 +5,16 @@ import com.badlogic.gdx.math.GridPoint2;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.mygdx.tetris.logic.Direction.DOWN;
+import static com.mygdx.tetris.logic.Direction.LEFT;
+import static com.mygdx.tetris.logic.Direction.UP;
+
 /**
  * Created by up201505145 on 22/05/2017.
  */
 public abstract class Piece {
     protected List<Block> blocks;
-    int axisBlockIndex;
+    int axisBlockIndex = -1;
     protected GameMap map;
     protected char symbol;
     protected Direction orientation;
@@ -49,46 +53,84 @@ public abstract class Piece {
 
     protected void rotateClockwise() {
         GridPoint2 axis = blocks.get(axisBlockIndex).getCoords();
+        GridPoint2 newCoords[] = new GridPoint2[4];
+        newCoords[axisBlockIndex] = axis;
         switch (orientation) {
             case UP:
-                setRightOrientation(axis);
+                getRightOrientation(newCoords, axis);
+                orientation = Direction.RIGHT;
                 break;
             case DOWN:
-                setLeftOrientation(axis);
+                getLeftOrientation(newCoords, axis);
+                orientation = LEFT;
                 break;
             case LEFT:
-                setUpOrientation(axis);
+                getUpOrientation(newCoords, axis);
+                orientation = UP;
                 break;
             case RIGHT:
-                setDownOrientation(axis);
+                getDownOrientation(newCoords, axis);
+                orientation = DOWN;
                 break;
         }
+        if (!map.canDrawAt(newCoords)) {
+            return;
+        }
+        applyNewCoords(newCoords);
     }
 
     protected void rotateAnticlockwise() {
         GridPoint2 axis = blocks.get(axisBlockIndex).getCoords();
+        GridPoint2 newCoords[] = new GridPoint2[4];
+        newCoords[axisBlockIndex] = axis;
         switch (orientation) {
             case UP:
-                setLeftOrientation(axis);
+                getLeftOrientation(newCoords, axis);
+                orientation = LEFT;
                 break;
             case DOWN:
-                setRightOrientation(axis);
+                getRightOrientation(newCoords, axis);
+                orientation = Direction.RIGHT;
                 break;
             case LEFT:
-                setDownOrientation(axis);
+                getDownOrientation(newCoords, axis);
+                orientation = Direction.DOWN;
                 break;
             case RIGHT:
-                setUpOrientation(axis);
+                getUpOrientation(newCoords, axis);
+                orientation = UP;
                 break;
+        }
+        if (!map.canDrawAt(newCoords)) {
+            return;
+        }
+        applyNewCoords(newCoords);
+    }
+
+    private void applyNewCoords(GridPoint2[] newCoords) {
+        for (int i = 0; i < newCoords.length; i++) {
+            blocks.get(i).setCoords(newCoords[i]);
         }
     }
 
+    protected abstract void getDownOrientation(GridPoint2[] newCoords, GridPoint2 axis);
+
+    protected abstract void getUpOrientation(GridPoint2[] newCoords, GridPoint2 axis);
+
+    protected abstract void getRightOrientation(GridPoint2[] newCoords, GridPoint2 axis);
+
+    protected abstract void getLeftOrientation(GridPoint2[] newCoords, GridPoint2 axis);
+
+    @Deprecated
     protected abstract void setDownOrientation(GridPoint2 axis);
 
+    @Deprecated
     protected abstract void setUpOrientation(GridPoint2 axis);
 
+    @Deprecated
     protected abstract void setLeftOrientation(GridPoint2 axis);
 
+    @Deprecated
     protected abstract void setRightOrientation(GridPoint2 axis);
 
     private void moveDown() {

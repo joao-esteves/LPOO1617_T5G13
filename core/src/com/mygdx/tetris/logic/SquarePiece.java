@@ -15,6 +15,27 @@ public class SquarePiece extends Piece {
         symbol = 'O';
         blocks = Arrays.asList(new Block(pos.x, pos.y, symbol), new Block(pos.x+1, pos.y, symbol),
                             new Block(pos.x, pos.y-1, symbol), new Block(pos.x+1, pos.y-1, symbol));
+        axisBlockIndex = 0; // Unused as square doesn't rotate, needed for generic piece logic.
+    }
+
+    @Override
+    protected void getDownOrientation(GridPoint2[] newCoords, GridPoint2 axis) {
+
+    }
+
+    @Override
+    protected void getUpOrientation(GridPoint2[] newCoords, GridPoint2 axis) {
+
+    }
+
+    @Override
+    protected void getRightOrientation(GridPoint2[] newCoords, GridPoint2 axis) {
+
+    }
+
+    @Override
+    protected void getLeftOrientation(GridPoint2[] newCoords, GridPoint2 axis) {
+
     }
 
     @Override
