@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 public class AccelManager {
 
     private static final float SHAKE_TRESHOLD = 50f;
-    private static final double MIN_ANGLE = 20.0;
+    private static final double MIN_ANGLE = 15.0;
     private float accumulatedDelta = 0;
     private float tiltLeftDelta = 0;
     private float tiltRightDelta = 0;
@@ -44,7 +44,7 @@ public class AccelManager {
                     wasUpright = false;
                     return true;
                 }
-            } else {
+            } else if (!tiltingRight()) {
                 wasUpright = true;
             }
         }
@@ -62,7 +62,7 @@ public class AccelManager {
                     wasUpright = false;
                     return true;
                 }
-            } else {
+            } else if (!tiltingLeft()) {
                 wasUpright = true;
             }
         }
@@ -72,21 +72,19 @@ public class AccelManager {
 
     public boolean tiltingLeft() {
         Vector3 accel = new Vector3(Gdx.input.getAccelerometerX(), Gdx.input.getAccelerometerY(), Gdx.input.getAccelerometerZ());
-        return (calcXYTiltAngle(accel) > -MIN_ANGLE);
+        return (calcXYTiltAngle(accel) > MIN_ANGLE);
     }
 
     public boolean tiltingRight() {
         Vector3 accel = new Vector3(Gdx.input.getAccelerometerX(), Gdx.input.getAccelerometerY(), Gdx.input.getAccelerometerZ());
-        return (calcXYTiltAngle(accel) < MIN_ANGLE);
+        return (calcXYTiltAngle(accel) < -MIN_ANGLE);
     }
 
     /**
      * Angle along the XY plane between the upright and current directions.
-     * @return Angle in degrees. Positive means angling right relative to the viewer, negative means angling left.
+     * @return Angle in degrees. Positive means angling right relative to the viewer, negative means angling right.
      */
     private double calcXYTiltAngle(Vector3 accel) {
         return Math.atan2(accel.x, accel.y) * 180/Math.PI;
     }
-
-
 }
