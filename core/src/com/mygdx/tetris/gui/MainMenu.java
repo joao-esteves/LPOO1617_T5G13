@@ -65,7 +65,7 @@ public class MainMenu extends ScreenAdapter {
             }
         });
 
-        table.add(playButton).width(150).height(100);
+        table.add(playButton).width(200).height(80);
         table.row();
     }
 
@@ -84,7 +84,7 @@ public class MainMenu extends ScreenAdapter {
             }
         });
 
-        table.add(newGameButton).width(150).height(100);
+        table.add(newGameButton).width(200).height(80);
         table.row();
     }
 
@@ -94,7 +94,7 @@ public class MainMenu extends ScreenAdapter {
         fbLoginButtonStyle.down = buttonSkin.getDrawable("greyDarkButton");
         fbLoginButtonStyle.font = font;
 
-        TextButton fbLoginButton = new TextButton("Play", fbLoginButtonStyle);
+        TextButton fbLoginButton = new TextButton("Login with FB", fbLoginButtonStyle);
         fbLoginButton.getLabel().setFontScale(2f);
         fbLoginButton.addListener(new ChangeListener() {
             @Override
@@ -103,7 +103,7 @@ public class MainMenu extends ScreenAdapter {
             }
         });
 
-        table.add(fbLoginButton).width(150).height(100);
+        table.add(fbLoginButton).width(200).height(80);
         table.row();
     }
 
