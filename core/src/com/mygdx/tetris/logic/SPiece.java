@@ -4,9 +4,6 @@ import com.badlogic.gdx.math.GridPoint2;
 
 import java.util.Arrays;
 
-import static com.mygdx.tetris.logic.Direction.DOWN;
-import static com.mygdx.tetris.logic.Direction.LEFT;
-import static com.mygdx.tetris.logic.Direction.RIGHT;
 import static com.mygdx.tetris.logic.Direction.UP;
 
 /**
@@ -51,30 +48,6 @@ public class SPiece extends Piece {
         newCoords[0] = new GridPoint2(axis.x-1, axis.y+1);
         newCoords[1] = new GridPoint2(axis.x-1, axis.y);
         newCoords[2] = new GridPoint2(axis.x, axis.y-1);
-    }
-
-    @Override
-    protected void setDownOrientation(GridPoint2 axis) {
-        setVerticalOrientation(axis);
-        orientation = DOWN;
-    }
-
-    @Override
-    protected void setUpOrientation(GridPoint2 axis) {
-        setVerticalOrientation(axis);
-        orientation = UP;
-    }
-
-    @Override
-    protected void setLeftOrientation(GridPoint2 axis) {
-        setHorizontalOrientation(axis);
-        orientation = LEFT;
-    }
-
-    @Override
-    protected void setRightOrientation(GridPoint2 axis) {
-        setHorizontalOrientation(axis);
-        orientation = RIGHT;
     }
 
     private void setVerticalOrientation(GridPoint2 axis) {

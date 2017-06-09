@@ -2,9 +2,7 @@ package com.mygdx.tetris.logic;
 
 import com.badlogic.gdx.math.GridPoint2;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by up201505145 on 22/05/2017.
@@ -35,26 +33,6 @@ public class SquarePiece extends Piece {
 
     @Override
     protected void getLeftOrientation(GridPoint2[] newCoords, GridPoint2 axis) {
-
-    }
-
-    @Override
-    protected void setDownOrientation(GridPoint2 axis) {
-
-    }
-
-    @Override
-    protected void setUpOrientation(GridPoint2 axis) {
-
-    }
-
-    @Override
-    protected void setLeftOrientation(GridPoint2 axis) {
-
-    }
-
-    @Override
-    protected void setRightOrientation(GridPoint2 axis) {
 
     }
 

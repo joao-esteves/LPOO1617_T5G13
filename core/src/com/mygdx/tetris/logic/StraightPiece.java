@@ -3,7 +3,6 @@ package com.mygdx.tetris.logic;
 import com.badlogic.gdx.math.GridPoint2;
 
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by up201505145 on 22/05/2017.
@@ -64,29 +63,14 @@ public class StraightPiece extends Piece {
     }
 
 
-
-    @Override
-    protected void setDownOrientation(GridPoint2 axis) {
-        setVerticalOrientation(axis);
-        orientation = Direction.DOWN;
-    }
-
-    @Override
-    protected void setUpOrientation(GridPoint2 axis) {
+    private void setUpOrientation(GridPoint2 axis) {
         setVerticalOrientation(axis);
         orientation = Direction.UP;
     }
 
-    @Override
-    protected void setLeftOrientation(GridPoint2 axis) {
+    private void setLeftOrientation(GridPoint2 axis) {
         setHorizontalOrientation(axis);
         orientation = Direction.LEFT;
-    }
-
-    @Override
-    protected void setRightOrientation(GridPoint2 axis) {
-        setHorizontalOrientation(axis);
-        orientation = Direction.RIGHT;
     }
 
     private void setVerticalOrientation(GridPoint2 axis) {

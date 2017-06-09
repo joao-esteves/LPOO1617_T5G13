@@ -51,26 +51,6 @@ public class ZPiece extends Piece {
     }
 
     @Override
-    protected void setDownOrientation(GridPoint2 axis) {
-
-    }
-
-    @Override
-    protected void setUpOrientation(GridPoint2 axis) {
-
-    }
-
-    @Override
-    protected void setLeftOrientation(GridPoint2 axis) {
-
-    }
-
-    @Override
-    protected void setRightOrientation(GridPoint2 axis) {
-
-    }
-
-    @Override
     public void setPos(GridPoint2 pos) {
         blocks.set(0, new Block(pos.x, pos.y, symbol));
         blocks.set(1, new Block(pos.x+1, pos.y, symbol));

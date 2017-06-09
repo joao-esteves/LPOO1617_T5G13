@@ -121,18 +121,6 @@ public abstract class Piece {
 
     protected abstract void getLeftOrientation(GridPoint2[] newCoords, GridPoint2 axis);
 
-    @Deprecated
-    protected abstract void setDownOrientation(GridPoint2 axis);
-
-    @Deprecated
-    protected abstract void setUpOrientation(GridPoint2 axis);
-
-    @Deprecated
-    protected abstract void setLeftOrientation(GridPoint2 axis);
-
-    @Deprecated
-    protected abstract void setRightOrientation(GridPoint2 axis);
-
     private void moveDown() {
     for (Block block : blocks) {
             block.moveDown();
