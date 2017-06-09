@@ -155,9 +155,11 @@ public class GameView implements Screen {
 
     // TODO: Keyboard
     private void setupMovementInput() {
+        Table movButtonsTable = new Table();
+
         Button.ButtonStyle transparentStyle = new Button.ButtonStyle();
-        transparentStyle.up = buttonSkin.getDrawable("greyButton");
-        transparentStyle.down = buttonSkin.getDrawable("greyDarkButton");
+        transparentStyle.up = buttonSkin.getDrawable("transparent");
+        transparentStyle.down = buttonSkin.getDrawable("transparent");
 
         Button leftButton = new Button(transparentStyle);
         Button rightButton = new Button(transparentStyle);
@@ -185,54 +187,55 @@ public class GameView implements Screen {
 
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();
-        table.add(leftButton).expand().bottom().left().width(screenWidth/2).height(screenHeight/2);
-        table.add(rightButton).expand().bottom().right().width(screenWidth/2).height(screenHeight/2);
+        movButtonsTable.add(leftButton).bottom().left().width(screenWidth/2).height(screenHeight/2);
+        movButtonsTable.add(rightButton).bottom().right().width(screenWidth/2).height(screenHeight/2);
+        table.add(movButtonsTable).expand().bottom();
     }
 
-    private void setupMovementButtons() {
-        leftButton = new TextButton("Left", buttonStyle);
-        leftButton.getLabel().setFontScale(2f);
-        leftButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                try {
-                    model.nextCycle(Direction.LEFT);
-                } catch (CorruptedCell corruptedCell) {
-                    corruptedCell.printStackTrace();
-                }
-            }
-        });
-
-        downButton = new TextButton("Down", buttonStyle);
-        downButton.getLabel().setFontScale(2f);
-        downButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                try {
-                    model.nextCycle(Direction.DOWN);
-                } catch (CorruptedCell corruptedCell) {
-                    corruptedCell.printStackTrace();
-                }
-            }
-        });
-
-        rightButton = new TextButton("Right", buttonStyle);
-        rightButton.getLabel().setFontScale(2f);
-        rightButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                try {
-                    model.nextCycle(Direction.RIGHT);
-                } catch (CorruptedCell corruptedCell) {
-                    corruptedCell.printStackTrace();
-                }
-            }
-        });
-
-//        table.add(leftButton).top().width(150).height(100);
-//        table.add(downButton).top().width(150).height(100);
-//        table.add(rightButton).top().width(150).height(100);
-    }
+//    private void setupMovementButtons() {
+//        leftButton = new TextButton("Left", buttonStyle);
+//        leftButton.getLabel().setFontScale(2f);
+//        leftButton.addListener(new ChangeListener() {
+//            @Override
+//            public void changed(ChangeEvent event, Actor actor) {
+//                try {
+//                    model.nextCycle(Direction.LEFT);
+//                } catch (CorruptedCell corruptedCell) {
+//                    corruptedCell.printStackTrace();
+//                }
+//            }
+//        });
+//
+//        downButton = new TextButton("Down", buttonStyle);
+//        downButton.getLabel().setFontScale(2f);
+//        downButton.addListener(new ChangeListener() {
+//            @Override
+//            public void changed(ChangeEvent event, Actor actor) {
+//                try {
+//                    model.nextCycle(Direction.DOWN);
+//                } catch (CorruptedCell corruptedCell) {
+//                    corruptedCell.printStackTrace();
+//                }
+//            }
+//        });
+//
+//        rightButton = new TextButton("Right", buttonStyle);
+//        rightButton.getLabel().setFontScale(2f);
+//        rightButton.addListener(new ChangeListener() {
+//            @Override
+//            public void changed(ChangeEvent event, Actor actor) {
+//                try {
+//                    model.nextCycle(Direction.RIGHT);
+//                } catch (CorruptedCell corruptedCell) {
+//                    corruptedCell.printStackTrace();
+//                }
+//            }
+//        });
+//
+////        table.add(leftButton).top().width(150).height(100);
+////        table.add(downButton).top().width(150).height(100);
+////        table.add(rightButton).top().width(150).height(100);
+//    }
 
     private void initSprites(Sprite[] sprites, TextureAtlas atlas) {
         for (ColorEnum color : ColorEnum.values()) {
