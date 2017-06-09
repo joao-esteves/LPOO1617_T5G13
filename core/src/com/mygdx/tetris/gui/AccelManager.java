@@ -72,12 +72,12 @@ public class AccelManager {
 
     public boolean tiltingLeft() {
         Vector3 accel = new Vector3(Gdx.input.getAccelerometerX(), Gdx.input.getAccelerometerY(), Gdx.input.getAccelerometerZ());
-        return (calcXYTiltAngle(accel) < -MIN_ANGLE);
+        return (calcXYTiltAngle(accel) > -MIN_ANGLE);
     }
 
     public boolean tiltingRight() {
         Vector3 accel = new Vector3(Gdx.input.getAccelerometerX(), Gdx.input.getAccelerometerY(), Gdx.input.getAccelerometerZ());
-        return (calcXYTiltAngle(accel) > MIN_ANGLE);
+        return (calcXYTiltAngle(accel) < MIN_ANGLE);
     }
 
     /**
