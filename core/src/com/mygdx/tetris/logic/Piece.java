@@ -65,14 +65,6 @@ public abstract class Piece {
         }
     }
 
-    protected abstract void setDownOrientation(GridPoint2 axis);
-
-    protected abstract void setUpOrientation(GridPoint2 axis);
-
-    protected abstract void setLeftOrientation(GridPoint2 axis);
-
-    protected abstract void setRightOrientation(GridPoint2 axis);
-
     protected void rotateAnticlockwise() {
         GridPoint2 axis = blocks.get(axisBlockIndex).getCoords();
         switch (orientation) {
@@ -90,6 +82,14 @@ public abstract class Piece {
                 break;
         }
     }
+
+    protected abstract void setDownOrientation(GridPoint2 axis);
+
+    protected abstract void setUpOrientation(GridPoint2 axis);
+
+    protected abstract void setLeftOrientation(GridPoint2 axis);
+
+    protected abstract void setRightOrientation(GridPoint2 axis);
 
     private void moveDown() {
     for (Block block : blocks) {
