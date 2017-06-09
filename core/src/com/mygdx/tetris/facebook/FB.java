@@ -30,13 +30,4 @@ public class FB {
         String loginDialogUrl = facebookClient.getLoginDialogUrl(appId, redirectUri, scopeBuilder);
         Gdx.net.openURI(loginDialogUrl);
     }
-
-    public String getName() {
-        User me = facebookClient.fetchObject("me", User.class, Parameter.with("fields", "first_name,last_name"));
-        return me.getName();
-    }
-
-//    public void shareScore(int score) {
-//        FacebookType publishMessageResponse = facebookClient.publish("me/feed", FacebookType.class, Parameter.with("message", "RestFB test"), Parameter.with("link", "http://www.google.com"));
-//    }
 }

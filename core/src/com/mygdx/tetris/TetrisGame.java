@@ -1,6 +1,7 @@
 package com.mygdx.tetris;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.mygdx.tetris.facebook.FB;
 import com.mygdx.tetris.gui.GameView;
 import com.mygdx.tetris.gui.MainMenu;
@@ -17,9 +18,6 @@ public class TetrisGame extends Game {
 	}
 
 	private int columns = 10, lines = 20;
-//	private final String fbAppId = "1333570703393561";
-//	private final String fbRedirectUri = "https://www.facebook.com/connect/login_success.html";
-//	private final String fbAppSecret = "a86d5fd7a1503aefc9656dc204ec60f2";
 	private FB facebook;
 
 	@Override
@@ -34,22 +32,16 @@ public class TetrisGame extends Game {
 		this.setScreen(GameView.getInstance(this, model));
 	}
 
-//	public String getFbAppId() {
-//		return fbAppId;
-//	}
-//
-//	public String getFbRedirectUri() {
-//		return fbRedirectUri;
-//	}
-//
-//	public String getFbAppSecret() {
-//		return fbAppSecret;
-//	}
+	public void setNewBoardScreen() {
+		GameModel model = new GameModel(columns, lines);
+		GameView gameView = GameView.getInstance(this, model);
+		gameView.getModel().restart();
+		this.setScreen(gameView);
+	}
 
-//	public void shareScore(int score) {
-//		facebook.login();
-//	//	facebook.shareScore(score);
-//	}
+	public FB getFacebook() {
+		return facebook;
+	}
 
 	/*
 	@Override

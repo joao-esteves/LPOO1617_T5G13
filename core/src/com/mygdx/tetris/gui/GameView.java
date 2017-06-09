@@ -315,4 +315,8 @@ public class GameView implements Screen {
         buttonSkin.dispose();
         atlas.dispose();
     }
+
+    public GameModel getModel() {
+        return model;
+    }
 }

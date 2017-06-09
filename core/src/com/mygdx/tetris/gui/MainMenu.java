@@ -1,6 +1,7 @@
 package com.mygdx.tetris.gui;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -43,6 +44,8 @@ public class MainMenu extends ScreenAdapter {
         buttonSkin.addRegions(atlas);
 
         setupPlayButton();
+        setupNewGameButton();
+        setupFBLoginButton();
 
         stage.addActor(table);
     }
@@ -63,6 +66,45 @@ public class MainMenu extends ScreenAdapter {
         });
 
         table.add(playButton).width(150).height(100);
+        table.row();
+    }
+
+    private void setupNewGameButton() {
+        TextButtonStyle newButtonStyle = new TextButtonStyle();
+        newButtonStyle.up = buttonSkin.getDrawable("greyButton");
+        newButtonStyle.down = buttonSkin.getDrawable("greyDarkButton");
+        newButtonStyle.font = font;
+
+        TextButton newGameButton = new TextButton("New Game", newButtonStyle);
+        newGameButton.getLabel().setFontScale(2f);
+        newGameButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.setNewBoardScreen();
+            }
+        });
+
+        table.add(newGameButton).width(150).height(100);
+        table.row();
+    }
+
+    private void setupFBLoginButton() {
+        TextButtonStyle fbLoginButtonStyle = new TextButtonStyle();
+        fbLoginButtonStyle.up = buttonSkin.getDrawable("greyButton");
+        fbLoginButtonStyle.down = buttonSkin.getDrawable("greyDarkButton");
+        fbLoginButtonStyle.font = font;
+
+        TextButton fbLoginButton = new TextButton("Play", fbLoginButtonStyle);
+        fbLoginButton.getLabel().setFontScale(2f);
+        fbLoginButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.getFacebook().login();
+            }
+        });
+
+        table.add(fbLoginButton).width(150).height(100);
+        table.row();
     }
 
     public static MainMenu getInstance(TetrisGame game) {
