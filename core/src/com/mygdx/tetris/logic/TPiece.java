@@ -59,30 +59,66 @@ public class TPiece extends Piece {
     }
 
     private void setDownOrientation(GridPoint2 axis) {
-        blocks.get(0).setCoords(axis.x, axis.y-1);
-        blocks.get(1).setCoords(axis.x+1, axis.y);
-        blocks.get(3).setCoords(axis.x-1, axis.y);
+        GridPoint2[] newCoords = new GridPoint2[3];
+        newCoords[0] = new GridPoint2(axis.x, axis.y-1);
+        newCoords[1] = new GridPoint2(axis.x+1, axis.y);
+        newCoords[2] = new GridPoint2(axis.x-1, axis.y);
+
+        if (!map.canDrawAt(newCoords)) {
+            return;
+        }
+
+        blocks.get(0).setCoords(newCoords[0]);
+        blocks.get(1).setCoords(newCoords[1]);
+        blocks.get(3).setCoords(newCoords[2]);
         orientation = DOWN;
     }
 
     private void setUpOrientation(GridPoint2 axis) {
-        blocks.get(0).setCoords(axis.x, axis.y+1);
-        blocks.get(1).setCoords(axis.x-1, axis.y);
-        blocks.get(3).setCoords(axis.x+1, axis.y);
+        GridPoint2[] newCoords = new GridPoint2[3];
+        newCoords[0] = new GridPoint2(axis.x, axis.y+1);
+        newCoords[1] = new GridPoint2(axis.x-1, axis.y);
+        newCoords[2] = new GridPoint2(axis.x+1, axis.y);
+
+        if (!map.canDrawAt(newCoords)) {
+            return;
+        }
+
+        blocks.get(0).setCoords(newCoords[0]);
+        blocks.get(1).setCoords(newCoords[1]);
+        blocks.get(3).setCoords(newCoords[2]);
         orientation = UP;
     }
 
     private void setLeftOrientation(GridPoint2 axis) {
-        blocks.get(0).setCoords(axis.x-1, axis.y);
-        blocks.get(1).setCoords(axis.x, axis.y-1);
-        blocks.get(3).setCoords(axis.x, axis.y+1);
+        GridPoint2[] newCoords = new GridPoint2[3];
+        newCoords[0] = new GridPoint2(axis.x-1, axis.y);
+        newCoords[1] = new GridPoint2(axis.x, axis.y-1);
+        newCoords[2] = new GridPoint2(axis.x, axis.y+1);
+
+        if (!map.canDrawAt(newCoords)) {
+            return;
+        }
+
+        blocks.get(0).setCoords(newCoords[0]);
+        blocks.get(1).setCoords(newCoords[1]);
+        blocks.get(3).setCoords(newCoords[2]);
         orientation = LEFT;
     }
 
     private void setRightOrientation(GridPoint2 axis) {
-        blocks.get(0).setCoords(axis.x+1, axis.y);
-        blocks.get(1).setCoords(axis.x, axis.y+1);
-        blocks.get(3).setCoords(axis.x, axis.y-1);
+        GridPoint2[] newCoords = new GridPoint2[3];
+        newCoords[0] = new GridPoint2(axis.x+1, axis.y);
+        newCoords[1] = new GridPoint2(axis.x, axis.y+1);
+        newCoords[2] = new GridPoint2(axis.x, axis.y-1);
+
+        if (!map.canDrawAt(newCoords)) {
+            return;
+        }
+
+        blocks.get(0).setCoords(newCoords[0]);
+        blocks.get(1).setCoords(newCoords[1]);
+        blocks.get(3).setCoords(newCoords[2]);
         orientation = RIGHT;
     }
 

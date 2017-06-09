@@ -31,19 +31,46 @@ public class StraightPiece extends Piece {
         switch (orientation) {
             case UP:
             case DOWN:
-                orientation = Direction.LEFT;
-                blocks.get(0).setCoords(axis.x - 1, axis.y);
-                blocks.get(2).setCoords(axis.x + 1, axis.y);
-                blocks.get(3).setCoords(axis.x + 2, axis.y);
+                setLeftOrientation(axis);
                 break;
             case LEFT:
             case RIGHT:
-                orientation = Direction.UP;
-                blocks.get(0).setCoords(axis.x, axis.y + 1);
-                blocks.get(2).setCoords(axis.x, axis.y - 1);
-                blocks.get(3).setCoords(axis.x, axis.y - 2);
+                setUpOrientation(axis);
+
                 break;
         }
+    }
+
+    private void setUpOrientation(GridPoint2 axis) {
+        GridPoint2[] newCoords = new GridPoint2[3];
+        newCoords[0] = new GridPoint2(axis.x, axis.y + 1);
+        newCoords[1] = new GridPoint2(axis.x, axis.y - 1);
+        newCoords[2] = new GridPoint2(axis.x, axis.y - 2);
+
+        if (!map.canDrawAt(newCoords)) {
+            return;
+        }
+
+        orientation = Direction.UP;
+        blocks.get(0).setCoords(newCoords[0]);
+        blocks.get(2).setCoords(newCoords[1]);
+        blocks.get(3).setCoords(newCoords[2]);
+    }
+
+    private void setLeftOrientation(GridPoint2 axis) {
+        GridPoint2[] newCoords = new GridPoint2[3];
+        newCoords[0] = new GridPoint2(axis.x - 1, axis.y);
+        newCoords[1] = new GridPoint2(axis.x + 1, axis.y);
+        newCoords[2] = new GridPoint2(axis.x + 2, axis.y);
+
+        if (!map.canDrawAt(newCoords)) {
+            return;
+        }
+
+        orientation = Direction.LEFT;
+        blocks.get(0).setCoords(newCoords[0]);
+        blocks.get(2).setCoords(newCoords[1]);
+        blocks.get(3).setCoords(newCoords[2]);
     }
 
     @Override
@@ -53,4 +80,6 @@ public class StraightPiece extends Piece {
         blocks.set(2, new Block(pos.x, pos.y-2, symbol));
         blocks.set(3, new Block(pos.x, pos.y-3, symbol));
     }
+
+
 }

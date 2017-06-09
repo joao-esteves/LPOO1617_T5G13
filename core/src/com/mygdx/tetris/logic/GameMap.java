@@ -121,4 +121,18 @@ public class GameMap {
             }
         }
     }
+
+    public boolean canDrawAt(GridPoint2[] coords) {
+        for (GridPoint2 pos : coords){
+            if (isOutBounds(pos) || isOccupied(pos)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isOutBounds(GridPoint2 pos) {
+        return (pos.x < 0 || pos.x >= getCols()
+                || pos.y < 0 || pos.y >= getLines());
+    }
 }
