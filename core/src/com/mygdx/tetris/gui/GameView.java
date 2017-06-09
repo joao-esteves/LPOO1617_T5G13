@@ -150,7 +150,6 @@ public class GameView implements Screen {
         buttonStyle.font = font;
 
         setupMenuButton();
-        //setupMovementButtons();
     }
 
     // TODO: Keyboard
@@ -187,8 +186,8 @@ public class GameView implements Screen {
 
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();
-        movButtonsTable.add(leftButton).bottom().left().width(screenWidth/2).height(screenHeight/2);
-        movButtonsTable.add(rightButton).bottom().right().width(screenWidth/2).height(screenHeight/2);
+        movButtonsTable.add(leftButton).bottom().left().width(screenWidth/2).prefHeight(screenHeight);
+        movButtonsTable.add(rightButton).bottom().right().width(screenWidth/2).prefHeight(screenHeight);
         table.add(movButtonsTable).expand().bottom();
     }
 
