@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
  * Created by up201505145 on 25/05/2017.
  */
 
-public class Test_Exceptions {
+public class Test_Exceptions extends GameTest {
     @Test
     public void corruptedCell() {
         try {

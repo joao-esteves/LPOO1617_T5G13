@@ -9,7 +9,7 @@ import org.junit.Test;
  * Created by joaof on 31/05/2017.
  */
 
-public class Test_Facebook {
+public class Test_Facebook extends GameTest {
     @Test
     public void login() {
         FB facebook = new FB();

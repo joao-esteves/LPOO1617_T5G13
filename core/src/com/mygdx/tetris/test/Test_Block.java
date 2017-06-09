@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
  * Created by up201505145 on 25/05/2017.
  */
 
-public class Test_Block {
+public class Test_Block extends GameTest {
     @Test
     public void creation() {
         Block gridBlock = new Block(new GridPoint2(1, 2), 'A');

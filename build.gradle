@@ -40,7 +40,6 @@ project(":desktop") {
         compile project(":core")
         compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-    //    compile files('restfb-1.41.0.jar')
     }
 }
 
@@ -57,7 +56,6 @@ project(":android") {
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-arm64-v8a"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86_64"
-     //   compile files('restfb-1.41.0.jar')
         compile fileTree(dir: '../libs', include: '*.jar')
     }
 }
@@ -65,11 +63,10 @@ project(":android") {
 project(":core") {
     apply plugin: "java"
 
-//    compile fileTree(dir: '../libs', include: '*.jar')
+    sourceSets.test.java.srcDirs = ["/test"]
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        //compile fileTree(dir: 'libs', include: '*.jar')
         compile fileTree(dir: '../libs', include: '*.jar')
     }
 }
