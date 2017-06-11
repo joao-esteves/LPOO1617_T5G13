@@ -5,5 +5,5 @@ package com.mygdx.tetris.logic;
  */
 
 public enum GameStatus {
-    ONGOING, VICTORY, DEFEAT;
+    ONGOING, DEFEAT;
 }

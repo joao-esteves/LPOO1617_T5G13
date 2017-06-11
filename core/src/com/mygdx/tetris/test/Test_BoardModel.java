@@ -3,6 +3,7 @@ package com.mygdx.tetris.test;
 import com.mygdx.tetris.logic.CorruptedCell;
 import com.mygdx.tetris.logic.Direction;
 import com.mygdx.tetris.logic.GameModel;
+import com.mygdx.tetris.logic.GameStatus;
 import com.mygdx.tetris.logic.Piece;
 
 import org.junit.Test;
@@ -19,6 +20,8 @@ public class Test_BoardModel {
     public void creation() {
         GameModel game = new GameModel(6, 6);
         assertNotEquals(game, null);
+        assertEquals(0, game.getCompletedLines());
+        assertEquals(GameStatus.ONGOING, game.getStatus());
     }
 
     @Test

@@ -3,6 +3,7 @@ package com.mygdx.tetris.test;
 import com.badlogic.gdx.math.GridPoint2;
 import com.mygdx.tetris.logic.Direction;
 import com.mygdx.tetris.logic.GameMap;
+import com.mygdx.tetris.logic.JPiece;
 import com.mygdx.tetris.logic.Piece;
 import com.mygdx.tetris.logic.PieceFactory;
 

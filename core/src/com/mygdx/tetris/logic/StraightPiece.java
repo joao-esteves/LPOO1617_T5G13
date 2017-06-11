@@ -16,20 +16,6 @@ public class StraightPiece extends Piece {
         axisBlockIndex = 1;
     }
 
-    private void rotate() {
-        GridPoint2 axis = blocks.get(1).getCoords();
-        switch (orientation) {
-            case UP:
-            case DOWN:
-                setLeftOrientation(axis);
-                break;
-            case LEFT:
-            case RIGHT:
-                setUpOrientation(axis);
-                break;
-        }
-    }
-
     @Override
     protected void getDownOrientation(GridPoint2[] newCoords, GridPoint2 axis) {
         getVerticalOrientation(newCoords, axis);
@@ -60,47 +46,6 @@ public class StraightPiece extends Piece {
         newCoords[0] = new GridPoint2(axis.x - 1, axis.y);
         newCoords[2] = new GridPoint2(axis.x + 1, axis.y);
         newCoords[3] = new GridPoint2(axis.x + 2, axis.y);
-    }
-
-
-    private void setUpOrientation(GridPoint2 axis) {
-        setVerticalOrientation(axis);
-        orientation = Direction.UP;
-    }
-
-    private void setLeftOrientation(GridPoint2 axis) {
-        setHorizontalOrientation(axis);
-        orientation = Direction.LEFT;
-    }
-
-    private void setVerticalOrientation(GridPoint2 axis) {
-        GridPoint2[] newCoords = new GridPoint2[3];
-        newCoords[0] = new GridPoint2(axis.x, axis.y + 1);
-        newCoords[1] = new GridPoint2(axis.x, axis.y - 1);
-        newCoords[2] = new GridPoint2(axis.x, axis.y - 2);
-
-        if (!map.canDrawAt(newCoords)) {
-            return;
-        }
-
-        blocks.get(0).setCoords(newCoords[0]);
-        blocks.get(2).setCoords(newCoords[1]);
-        blocks.get(3).setCoords(newCoords[2]);
-    }
-
-    private void setHorizontalOrientation(GridPoint2 axis) {
-        GridPoint2[] newCoords = new GridPoint2[3];
-        newCoords[0] = new GridPoint2(axis.x - 1, axis.y);
-        newCoords[1] = new GridPoint2(axis.x + 1, axis.y);
-        newCoords[2] = new GridPoint2(axis.x + 2, axis.y);
-
-        if (!map.canDrawAt(newCoords)) {
-            return;
-        }
-
-        blocks.get(0).setCoords(newCoords[0]);
-        blocks.get(2).setCoords(newCoords[1]);
-        blocks.get(3).setCoords(newCoords[2]);
     }
 
     @Override

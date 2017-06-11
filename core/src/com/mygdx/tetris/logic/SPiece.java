@@ -50,36 +50,6 @@ public class SPiece extends Piece {
         newCoords[2] = new GridPoint2(axis.x, axis.y-1);
     }
 
-    private void setVerticalOrientation(GridPoint2 axis) {
-        GridPoint2[] newCoords = new GridPoint2[3];
-        newCoords[0] = new GridPoint2(axis.x, axis.y+1);
-        newCoords[1] = new GridPoint2(axis.x+1, axis.y+1);
-        newCoords[2] = new GridPoint2(axis.x-1, axis.y);
-
-        if (!map.canDrawAt(newCoords)) {
-            return;
-        }
-
-        blocks.get(0).setCoords(newCoords[0]);
-        blocks.get(1).setCoords(newCoords[1]);
-        blocks.get(2).setCoords(newCoords[2]);
-    }
-
-    private void setHorizontalOrientation(GridPoint2 axis) {
-        GridPoint2[] newCoords = new GridPoint2[3];
-        newCoords[0] = new GridPoint2(axis.x-1, axis.y+1);
-        newCoords[1] = new GridPoint2(axis.x-1, axis.y);
-        newCoords[2] = new GridPoint2(axis.x, axis.y-1);
-
-        if (!map.canDrawAt(newCoords)) {
-            return;
-        }
-
-        blocks.get(0).setCoords(newCoords[0]);
-        blocks.get(1).setCoords(newCoords[1]);
-        blocks.get(2).setCoords(newCoords[2]);
-    }
-
     @Override
     public void setPos(GridPoint2 pos) {
         blocks.set(0, new Block(pos.x+1, pos.y, symbol));
