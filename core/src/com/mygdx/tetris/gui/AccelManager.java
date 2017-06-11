@@ -15,8 +15,8 @@ public class AccelManager {
     private float tiltLeftDelta = 0;
     private float tiltRightDelta = 0;
     private boolean wasUpright = true;
-    Vector3 lastAccel = new Vector3();
-    Vector3 currentAccel = new Vector3();
+    private Vector3 lastAccel = new Vector3();
+    private Vector3 currentAccel = new Vector3();
 
     public boolean shookZ(float delta) {
         accumulatedDelta += delta;

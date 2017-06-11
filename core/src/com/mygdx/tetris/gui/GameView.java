@@ -58,9 +58,6 @@ public class GameView implements Screen {
 
     private TextButton.TextButtonStyle buttonStyle;
     private TextButton menuButton;
-    private TextButton downButton;
-    private TextButton leftButton;
-    private TextButton rightButton;
 
     private Label scoreLabel;
 
