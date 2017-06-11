@@ -30,7 +30,9 @@ PieceFactory. To randomly pick one of the Piece types, re-using each.
 ### Major Difficulties
 The main difficulty was actually starting the project, learning how to use LibGDX. Also learning how to use a Facebook library with the end goal of sharing the score, which was not achieved and so the only social interaction available is being able to login to Facebook.
 
+
 ### Lessons Learned
+To not underestimate apparently easy features such as Facebook sharing.
 
 
 ### Time Spent
