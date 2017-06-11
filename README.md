@@ -7,6 +7,7 @@ Open project in Android Studio with Gradle.
 
 ## Game Installation
 In desktop, execute desktop-1.0.jar.
+In Android, execute android-debug.apk.
 
 ## Development Documentation
 
