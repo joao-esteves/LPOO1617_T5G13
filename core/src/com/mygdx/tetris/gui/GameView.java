@@ -6,10 +6,12 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -21,6 +23,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.mygdx.tetris.TetrisGame;
 import com.mygdx.tetris.logic.CorruptedCell;
 import com.mygdx.tetris.logic.Direction;
@@ -114,6 +119,7 @@ public class GameView implements Screen {
         Window.WindowStyle popupStyle = new Window.WindowStyle();
         popupStyle.titleFont = font;
         popupStyle.titleFontColor = new Color(0, 0, 0, 1);
+        popupStyle.background = new TextureRegionDrawable(new TextureRegion(new Texture("backgroundDialog.png")));
         Skin popupSkin = new Skin(atlas);
         popupSkin.add("popup_style", popupStyle);
         endGamePopup = new Dialog("End Game", popupSkin, "popup_style") {
@@ -127,7 +133,13 @@ public class GameView implements Screen {
                 }
             }
         };
-        endGamePopup.button("Restart", PopupOptions.RESTART, buttonStyle);
+        endGamePopup.padTop(60);
+        endGamePopup.getTitleLabel().setAlignment(Align.center);
+        endGamePopup.getTitleLabel().setFontScale(1.4f);
+        TextButton restartButton = new TextButton("Restart", buttonStyle);
+        restartButton.getLabel().setFontScale(1.3f);
+        endGamePopup.getButtonTable().defaults().width(150).height(50);
+        endGamePopup.button(restartButton, PopupOptions.RESTART);
     }
 
     private void setupScore() {
