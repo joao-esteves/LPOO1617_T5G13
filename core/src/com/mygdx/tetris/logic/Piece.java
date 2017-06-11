@@ -10,7 +10,7 @@ import static com.mygdx.tetris.logic.Direction.LEFT;
 import static com.mygdx.tetris.logic.Direction.UP;
 
 /**
- * Created by up201505145 on 22/05/2017.
+ * Represents every Piece, defining most of their behavior.
  */
 public abstract class Piece {
     protected List<Block> blocks;
@@ -19,6 +19,10 @@ public abstract class Piece {
     protected char symbol;
     protected Direction orientation;
 
+    /**
+     * Returns all of the Piece's Block's coordinates.
+     * @return Current coordinates of every block.
+     */
     public ArrayList<GridPoint2> getCoords() {
         ArrayList<GridPoint2> coords = new ArrayList<GridPoint2>();
         for (Block block : blocks) {
@@ -59,6 +63,9 @@ public abstract class Piece {
         }
     }
 
+    /**
+     * Rotates a Piece clockwise.
+     */
     protected void rotateClockwise() {
         GridPoint2 axis = blocks.get(axisBlockIndex).getCoords();
         GridPoint2 newCoords[] = new GridPoint2[4];
@@ -87,6 +94,9 @@ public abstract class Piece {
         applyNewCoords(newCoords);
     }
 
+    /**
+     * Rotates a Piece anticlockwise.
+     */
     protected void rotateAnticlockwise() {
         GridPoint2 axis = blocks.get(axisBlockIndex).getCoords();
         GridPoint2 newCoords[] = new GridPoint2[4];
@@ -121,12 +131,32 @@ public abstract class Piece {
         }
     }
 
+    /**
+     * Gets Piece's Block coordinates when facing down. Implemented by sublasses.
+     * @param newCoords Set by this function. Coordinates for all of the Piece's Blocks, with same index as in Piece's blocks list.
+     * @param axis Coordinates of a Piece's Block used as a rotation axis.
+     */
     protected abstract void getDownOrientation(GridPoint2[] newCoords, GridPoint2 axis);
 
+    /**
+     * Gets Piece's Block coordinates when facing up Implemented by sublasses.
+     * @param newCoords Set by this function. Coordinates for all of the Piece's Blocks, with same index as in Piece's blocks list.
+     * @param axis Coordinates of a Piece's Block used as a rotation axis.
+     */
     protected abstract void getUpOrientation(GridPoint2[] newCoords, GridPoint2 axis);
 
+    /**
+     * Gets Piece's Block coordinates when facing right. Implemented by sublasses.
+     * @param newCoords Set by this function. Coordinates for all of the Piece's Blocks, with same index as in Piece's blocks list.
+     * @param axis Coordinates of a Piece's Block used as a rotation axis.
+     */
     protected abstract void getRightOrientation(GridPoint2[] newCoords, GridPoint2 axis);
 
+    /**
+     * Gets Piece's Block coordinates when facing left. Implemented by sublasses.
+     * @param newCoords Set by this function. Coordinates for all of the Piece's Blocks, with same index as in Piece's blocks list.
+     * @param axis Coordinates of a Piece's Block used as a rotation axis.
+     */
     protected abstract void getLeftOrientation(GridPoint2[] newCoords, GridPoint2 axis);
 
     private void moveDown() {
@@ -161,9 +191,17 @@ public abstract class Piece {
         return blocks;
     }
 
+    /**
+     * Returns Piece's symbol.
+     * @return Current symbol.
+     */
     public char getSymbol() {
         return symbol;
     }
 
+    /**
+     * Moves Piece to a given position, changing the coordinates of every block. Implemented by subclasses.
+     * @param pos New coordinates.
+     */
     public abstract void setPos(GridPoint2 pos);
 }
