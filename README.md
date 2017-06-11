@@ -22,5 +22,6 @@ PieceFactory. To randomly pick one of the Piece types, re-using each.
 ### Lessons Learned
 
 ### Time Spent
+Around 100 hours.
 
 ## User Manual
