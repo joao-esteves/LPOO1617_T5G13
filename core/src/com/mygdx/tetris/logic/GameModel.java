@@ -163,13 +163,4 @@ public class GameModel {
     private void loseGame() {
         status = status.DEFEAT;
     }
-
-    private boolean isAtEdges(Piece piece) {
-        for (Block block : piece.getBlocks()) {
-            if (block.getCoords().x == 0 || block.getCoords().x == map.getCols() - 1) {
-                return true;
-            }
-        }
-        return false;
-    }
 }
