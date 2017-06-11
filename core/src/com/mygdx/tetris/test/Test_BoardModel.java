@@ -14,7 +14,7 @@ import static org.junit.Assert.assertTrue;
  * Created by up201505145 on 16/05/2017.
  */
 
-public class Test_BoardModel extends GameTest {
+public class Test_BoardModel {
     @Test
     public void creation() {
         GameModel game = new GameModel(6, 6);

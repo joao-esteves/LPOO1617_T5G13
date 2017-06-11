@@ -17,7 +17,7 @@ import static org.junit.Assert.assertNotEquals;
  * Created by up201505145 on 22/05/2017.
  */
 
-public class Test_Piece extends GameTest {
+public class Test_Piece {
 
     @Test
     public void movePiece() {
