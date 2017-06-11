@@ -135,6 +135,7 @@ public class GameView implements Screen {
         scoreLabelStyle.font = font;
         scoreLabelStyle.fontColor = new Color(0, 0, 0, 1);
         scoreLabel = new Label("Score: " + score, scoreLabelStyle);
+        scoreLabel.setFontScale(1.2f);
 
         table.add(scoreLabel).left();
         table.row();
