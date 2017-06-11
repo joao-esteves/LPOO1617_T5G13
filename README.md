@@ -41,12 +41,12 @@ Game opens in the Main Menu:
 
 <img src="https://github.com/Joao611/LPOO1617_T5G13/blob/master/Pictures/Main_Menu.png" width="300">
 
-"Play" either continues an ongoing game or starts a new one if there isn't one running already.
-
-"New Game" creates a new game.
-
-"Login with FB" opens the browser to login to Facebook.
++ "Play" either continues an ongoing game or starts a new one if there isn't one running already.
++ "New Game" creates a new game.
++ "Login with FB" opens the browser to login to Facebook.
 
 The game starts as such:
 
 <img src="https://github.com/Joao611/LPOO1617_T5G13/blob/master/Pictures/Game_Start.png" width="300">
+
++ "Menu" goes back to the Main Menu without quitting the game.
