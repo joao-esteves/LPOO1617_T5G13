@@ -51,6 +51,10 @@ The game starts as such:
 
 + "Menu" goes back to the Main Menu without quitting the game.
 
+When the game is lost, by laying blocks to the top, a Dialog appears with the option to restart the game>
+
+<img src="https://github.com/Joao611/LPOO1617_T5G13/blob/master/Pictures/Screenshot_2017-06-11-23-19-46.png" width="300">
+
 ### Controls
 
 + Click or touch the left half of the screen to move the piece to the left, click or touch the right half to move it right.
