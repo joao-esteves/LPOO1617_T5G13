@@ -59,3 +59,7 @@ When the game is lost, by laying blocks to the top, a Dialog appears with the op
 
 + Click or touch the left half of the screen to move the piece to the left, click or touch the right half to move it right.
 + On phone, rotate the phone left or right to rotate the piece and shake it forwards and backwards to drop the piece harder.
+
+### Score
+
++ When a line is completed and cleared, the top left counter is incremented.
