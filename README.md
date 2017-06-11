@@ -12,6 +12,11 @@
 
 ### Design Patterns
 
+#### Singleton
+For single instances of each Screen: GameView and MainMenu.
+#### Factory
+PieceFactory. To randomly pick one of the Piece types, re-using each.
+
 ### Major Difficulties
 
 ### Lessons Learned
