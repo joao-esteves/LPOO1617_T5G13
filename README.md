@@ -6,9 +6,9 @@ Open project in Android Studio with Gradle.
 
 
 ## Game Installation
-In desktop, execute desktop-1.0.jar.
+In desktop, execute desktop-1.0.jar from folder "Executables".
 
-In Android, execute android-debug.apk.
+In Android, execute android-debug.apk from folder "Executables".
 
 ## Development Documentation
 
