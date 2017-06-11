@@ -50,3 +50,8 @@ The game starts as such:
 <img src="https://github.com/Joao611/LPOO1617_T5G13/blob/master/Pictures/Game_Start.png" width="300">
 
 + "Menu" goes back to the Main Menu without quitting the game.
+
+### Controls
+
++ Click or touch the left half of the screen to move the piece to the left, click or touch the right half to move it right.
++ On phone, rotate the phone left or right to rotate the piece and shake it forwards and backwards to drop the piece harder.
