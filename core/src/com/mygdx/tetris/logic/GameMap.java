@@ -9,7 +9,6 @@ import java.util.List;
  */
 
 public class GameMap {
-    public static final char[] blockSymbols = {'I','J','L','O','S','T','Z'};
     private char[][] map;
 
     public GameMap(int columns, int lines) {
