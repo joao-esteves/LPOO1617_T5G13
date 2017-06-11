@@ -1,8 +1,10 @@
 # LPOO1617_T5G13
 
 ## Build
+Open project in Android Studio with Gradle.
 
 ## Game Installation
+In desktop, execute desktop-1.0.jar.
 
 ## Development Documentation
 
@@ -22,6 +24,6 @@ PieceFactory. To randomly pick one of the Piece types, re-using each.
 ### Lessons Learned
 
 ### Time Spent
-Around 100 hours.
+Around 120 hours.
 
 ## User Manual
