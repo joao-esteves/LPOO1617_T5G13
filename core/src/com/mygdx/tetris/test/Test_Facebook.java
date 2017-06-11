@@ -11,8 +11,7 @@ import org.junit.Test;
 
 public class Test_Facebook extends GameTest {
     @Test
-    public void login() {
+    public void create() {
         FB facebook = new FB();
-        facebook.login();
     }
 }

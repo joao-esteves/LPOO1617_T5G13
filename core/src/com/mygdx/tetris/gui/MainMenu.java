@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -21,6 +22,8 @@ import com.mygdx.tetris.TetrisGame;
 
 public class MainMenu extends ScreenAdapter {
 
+    private static final int BUTTON_WIDTH = 200;
+    private static final int BUTTON_HEIGHT = 70;
     private TetrisGame game;
 
     private Stage stage;
@@ -43,11 +46,22 @@ public class MainMenu extends ScreenAdapter {
         atlas = new TextureAtlas(Gdx.files.internal("tetris_images.pack"));
         buttonSkin.addRegions(atlas);
 
-        setupPlayButton();
-        setupNewGameButton();
-        setupFBLoginButton();
+        setupButtons();
 
         stage.addActor(table);
+    }
+
+    private void setupButtons() {
+        setupPlayButton();
+        addBlankColumn();
+        setupNewGameButton();
+        addBlankColumn();
+        setupFBLoginButton();
+    }
+
+    private void addBlankColumn() {
+        table.add(new Image()).height(40);
+        table.row();
     }
 
     private void setupPlayButton() {
@@ -65,7 +79,7 @@ public class MainMenu extends ScreenAdapter {
             }
         });
 
-        table.add(playButton).width(200).height(80);
+        table.add(playButton).width(BUTTON_WIDTH).height(BUTTON_HEIGHT);
         table.row();
     }
 
@@ -84,7 +98,7 @@ public class MainMenu extends ScreenAdapter {
             }
         });
 
-        table.add(newGameButton).width(200).height(80);
+        table.add(newGameButton).width(BUTTON_WIDTH).height(BUTTON_HEIGHT);
         table.row();
     }
 
@@ -103,7 +117,7 @@ public class MainMenu extends ScreenAdapter {
             }
         });
 
-        table.add(fbLoginButton).width(200).height(80);
+        table.add(fbLoginButton).width(BUTTON_WIDTH).height(BUTTON_HEIGHT);
         table.row();
     }
 
